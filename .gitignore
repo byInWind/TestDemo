@@ -1,0 +1,13 @@
+/target
+.project
+.settings
+.classpath
+.springBeans
+gen-java
+local.config
+gen-proto
+.DS_Store
+/script/perl5lib/qingcloud
+/bin
+/cu-core.iml
+/Vuex/.idea
