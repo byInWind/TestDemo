@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prop2</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+    <test
+            v-for="item in messages"
+            v-bind:title="item.message"
+            v-bind:key="item.id"
+    ></test>
+</div>
+<script>
+    Vue.component('test', {
+        data: function () {
+            return {
+                message: 'message'
+            }
+        },
+        props: ['title'],
+        template: '<h1>{{ title }} {{message}}</h1>'
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            messages: [
+                {id: 1, message: 'message1'},
+                {id: 2, message: 'message2'},
+                {id: 3, message: 'message3'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>
