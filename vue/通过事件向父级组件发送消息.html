@@ -5,24 +5,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>prop1</title>
+    <title>通过事件向父级组件发送消息</title>
 </head>
 <body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <div id="app">
-    <test title="testDemo"></test>
-    <test></test>
-    {{ message }}
+    <test
+            v-for="item in messages"
+            v-bind:title="item.message"
+            v-bind:key="item.id"
+    ></test>
 </div>
 <script>
-    <!--感觉vue文档又更新了,或者以前看的时候没有注意到prop的这种用法-->
-    //Prop 是你可以在组件上注册的一些自定义特性。当一个值传递给一个 prop 特性的时候，
-    // 它就变成了那个组件实例的一个属性。为了给博文组件传递一个标题，
-    // 我们可以用一个 props 选项将其包含在该组件可接受的 prop 列表中：
     Vue.component('test', {
-        //组件里的data不同于new Vue的data
         data: function () {
-          return {
+            return {
                 message: 'message'
             }
         },
@@ -32,7 +29,11 @@
     new Vue({
         el: "#app",
         data: {
-            message: 'message'
+            messages: [
+                {id: 1, message: 'message1'},
+                {id: 2, message: 'message2'},
+                {id: 3, message: 'message3'}
+            ]
         }
     })
 </script>
