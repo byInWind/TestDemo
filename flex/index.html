@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .Grid {
+            display: flex;
+            background-color: silver;
+        }
+
+        .Grid-cell {
+            flex: 1;
+            background-color: grey;
+            text-align: center;
+        }
+
+        .box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box .div1 {
+            background-color: rebeccapurple;
+        }
+
+        /*3*/
+        img {
+            width: 100%;
+        }
+
+        .divbox {
+            padding: 0 5%;
+        }
+
+        .imgbox {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+        }
+
+        .imgbox img {
+            position: relative;
+            z-index: 99;
+            pointer-events: none;
+        }
+
+        .center-center {
+            position: absolute;
+            width: 49px;
+            top: 1px;
+            border-radius: 50%;
+            left: 1px;
+            /* margin: 2px; */
+            height: 49px;
+        }
+
+        .center-user {
+            width: 150%;
+            margin-left: -25%;
+            font-size: 12px;
+            /*transform: scale(0.8);*/
+            text-align: center;
+        }
+
+        .userName {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<!--1-->
+<div class="Grid">
+    <div class="Grid-cell">1</div>
+    <div class="Grid-cell">2</div>
+    <div class="Grid-cell">3</div>
+</div>
+<!--2-->
+<div class="box" style="margin-top: 5vh">
+    <div class="div1">11</div>
+    <div class="div1">22</div>
+    <div class="div1">22</div>
+</div>
+<!--3-->
+<div class="box divbox" style="margin-top: 5vh">
+    <div class="imgbox">
+        <img src="./2-1.png" alt="">
+        <div class="btn-jump center-center" data-user-id="_zDASuBONIk" data-live-id=""
+             style="background-image: url(http://a.cnc.enjoymeet.com/t/s0s-FSKmYBFqRPIj7cLlMQ?op=imageView2&amp;mode=2&amp;width=150&amp;height=150&amp;quality=70&amp;format=jpg);background-size: cover">
+        </div>
+        <p class="center-user userName">mmmmmmmmmmm<br>神力值:59616</p>
+    </div>
+    <div class="imgbox">
+        <img src="./2-1.png" alt="">
+        <div class="btn-jump center-center" data-user-id="_zDASuBONIk" data-live-id=""
+             style="background-image: url(http://a.cnc.enjoymeet.com/t/s0s-FSKmYBFqRPIj7cLlMQ?op=imageView2&amp;mode=2&amp;width=150&amp;height=150&amp;quality=70&amp;format=jpg);background-size: cover">
+        </div>
+        <p class="center-user userName">mmmmmmmmmmm<br>神力值:59616</p>
+    </div>
+</div>
+
+</body>
+</html>
