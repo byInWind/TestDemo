@@ -8,23 +8,35 @@
     <title>通过事件向父级组件发送消息</title>
 </head>
 <body>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="../vue.js"></script>
 <div id="app">
-    <test
-            v-for="item in messages"
-            v-bind:title="item.message"
-            v-bind:key="item.id"
-    ></test>
+    <div :style="{color: redColor}">
+        <test
+                v-for="item in messages"
+                v-bind:title="item.message"
+                v-bind:key="item.id"
+                @mouseenter-color="changeColor"
+                @click="alertss"
+        ></test>
+        <p @click="alertss">test</p>
+    </div>
 </div>
 <script>
+    /*
+    *  父组件中的@click="changeColor"直接加在子组件test中无效*/
     Vue.component('test', {
         data: function () {
             return {
                 message: 'message'
             }
         },
+        methods: {
+            alerts: function () {
+                alert(11);
+            }
+        },
         props: ['title'],
-        template: '<h1>{{ title }} {{message}}</h1>'
+        template: `<h1 @mouseenter="$emit('mouseenter-color')" @click="alerts">{{ title }} {{message}}</h1>`
     });
     new Vue({
         el: "#app",
@@ -33,7 +45,16 @@
                 {id: 1, message: 'message1'},
                 {id: 2, message: 'message2'},
                 {id: 3, message: 'message3'}
-            ]
+            ],
+            redColor: "red"
+        },
+        methods: {
+            alertss: function () {
+                alert(1)
+            },
+            changeColor:function () {
+                this.redColor='gray'
+            }
         }
     })
 </script>

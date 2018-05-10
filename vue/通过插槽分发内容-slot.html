@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>通过插槽分发内容-slot</title>
 </head>
 <body>
-$END$
+<script src="../vue.js"></script>
+<div id="app">
+    <test
+            v-for="item in messages"
+            v-bind:title="item.message"
+            v-bind:key="item.id"
+    >
+        这是message组件
+    </test>
+</div>
+<script>
+    /*向一个组件传递内容，
+    <alert-box>
+    Something bad happened.
+    </alert-box>
+    默认是无法渲染出来的，需要一个slot标签*/
+    Vue.component('test', {
+        data: function () {
+            return {
+                message: 'message'
+            }
+        },
+        props: ['title'],
+        template: '<div><h1>{{ title }} {{message}}</h1><slot></slot></div>'
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            messages: [
+                {id: 1, message: 'message1'},
+                {id: 2, message: 'message2'},
+                {id: 3, message: 'message3'}
+            ]
+        }
+    })
+</script>
 </body>
 </html>
