@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>豆瓣电影</title>
+    <link rel="stylesheet" href="./common.css">
+</head>
+<body>
+<div id="top">
+    <div class="logo"><h1>豆瓣</h1></div>
+    <ul>
+        <li>电影</li>
+        <li>图书</li>
+        <li>广播</li>
+        <li>小组</li>
+        <li><img src="./img.png" alt=""></li>
+    </ul>
+</div>
+<div id="center">
+
+</div>
+<script id="top250Tpl" type="text/html">
+    {{each $data.subjects}}
+    <div class="box">
+        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>
+        <p class="name">{{$value.images.title}}</p>
+        <p>评分:{{$value.rating.average}}</p>
+    </div>
+    {{/each}}
+</script>
+<script src="./jquery-1.7.2.min.js"></script>
+<script src="./template-web.js"></script>
+<script>
+    $(function () {
+        var num = location.href.indexOf('?');
+        var url = location.href.slice(num + 4);
+        $.ajax({
+            url: 'https://api.douban.com/v2/movie/subject/'+url,
+            type: 'jsonp',
+            dataType: 'jsonp',
+            success: function (data) {
+                console.log(data)
+                // var html = template(templateTpl, data);
+                // $('#' + templateHtml).html(html)
+            }
+        })
+    })
+</script>
+</body>
+</html>
