@@ -29,10 +29,10 @@
         {{each $data.subjects}}
         <li>
             <div class="infoBox">
-                <a href="info.html?id={{$value.subject.id}}"><img src="{{$value.subject.images.small}}" alt="加载错误"></a>
+                <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
                 <div>
-                    <h3 class="h3">{{$value.subject.title}}</h3>
-                    <span class="aaa">豆瓣评分：{{$value.subject.rating.average}}</span>
+                    <h3 class="h3">{{$value.title}}</h3>
+                    <span class="aaa">豆瓣评分：{{$value.rating.average}}</span>
                 </div>
             </div>
         </li>
@@ -43,18 +43,29 @@
 <script src="../template-web.js"></script>
 <script>
     $(function () {
+        var num = location.href.indexOf('?');
+        var url = location.href.slice(num + 6);
+        switch (url) {
+            case '1':
+                url = 'in_theaters';
+                break;
+            case '2':
+                url = 'coming_soon';
+                break;
+            case '3':
+                url = 'top250';
+                break;
+            default:
+                url = 'in_theaters';
+        }
         $.ajax({
-            url: 'https://api.douban.com/v2/movie/us_box',
+            url: 'https://api.douban.com/v2/movie/' + url,
             type: 'get',
             dataType: 'jsonp',
             success: function (data) {
                 console.log(data);
                 var html = template('loadmoreTpl', data);
                 $('#loadmoreHtml').html(html)
-            },
-            error: function () {
-                console.log('data');
-
             }
         })
     })

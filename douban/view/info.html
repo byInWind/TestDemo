@@ -31,7 +31,11 @@
             </div>
             <div class="toleft">
                 <p class="fz15">
+                    {{if $data.rating.average == 0}}
+                    <span>暂无评分</span>
+                    {{else}}
                     <span>豆瓣评分:{{$data.rating.average}}&nbsp;</span>
+                    {{/if}}
                     <span class="aaa">{{$data.ratings_count}}人评价</span>
                 </p>
                 <p class="fz15">

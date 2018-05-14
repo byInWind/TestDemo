@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>仿豆瓣电影</title>
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/index.css"></head>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
 <body>
 <div id="top">
     <div class="logo"><h1>豆瓣</h1></div>
@@ -23,7 +24,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">正在热映</span>
-            <span class="two more"><a href="./loadMore.html">更多</a></span>
+            <span class="two more"><a href="./loadMore.html?type=1">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="hot_body">
@@ -35,7 +36,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">即将上映</span>
-            <span class="two more"><a href="./loadMore.html">更多</a></span>
+            <span class="two more"><a href="./loadMore.html?type=2">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="coming_soon_body">
@@ -47,7 +48,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">top250</span>
-            <span class="two more"><a href="./loadMore.html">更多</a></span>
+            <span class="two more"><a href="./loadMore.html?type=3">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="top250_body">
@@ -86,7 +87,11 @@
                         '    <div class="box">\n' +
                         '        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>\n' +
                         '        <p class="name">{{$value.title}}</p>\n' +
+                        '        {{if $value.rating.average == 0}}\n' +
+                        '        <p class="aaa fz12">暂无评分</p>\n' +
+                        '        {{else}}\n' +
                         '        <p class="aaa fz12">豆瓣评分:{{$value.rating.average}}</p>\n' +
+                        '        {{/if}}\n' +
                         '    </div>\n' +
                         '    {{/each}}');
                     var html = render(data);
