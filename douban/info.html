@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>豆瓣电影</title>
     <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./info.css">
 </head>
 <body>
 <div id="top">
@@ -19,16 +20,33 @@
     </ul>
 </div>
 <div id="center">
-
-</div>
-<script id="top250Tpl" type="text/html">
-    {{each $data.subjects}}
-    <div class="box">
-        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>
-        <p class="name">{{$value.images.title}}</p>
-        <p>评分:{{$value.rating.average}}</p>
+    <div class="top">
+        <!--<h2>复仇者联盟</h2>-->
+        <!--<div>-->
+        <!--<div class="toleft">-->
+        <!--<p>评分:{{$value.rating.average}}</p>-->
+        <!--<p>aa</p>-->
+        <!--</div>-->
+        <!--<img class="info" src="" alt="">-->
+        <!--</div>-->
     </div>
-    {{/each}}
+
+    <div class="listbox">
+        <div class="list">想看</div>
+        <div class="list">看过</div>
+    </div>
+    <a href="" class="inApp">在 App 上保存你的观影足迹</a>
+</div>
+<script id="infoTpl" type="text/html">
+    <h2>{{$data.title}}</h2>
+    <div>
+        <div class="toleft">
+            <span>评分:{{$data.rating.average}}</span>
+            <span class="pj">{{$data.ratings_count}}人评价</span>
+            <p>{{$data.durations}} aa</p>
+        </div>
+        <a href="$data.mobile_url"><img class="info" src="{{$data.images.small}}" alt=""></a>
+    </div>
 </script>
 <script src="./jquery-1.7.2.min.js"></script>
 <script src="./template-web.js"></script>
@@ -37,13 +55,13 @@
         var num = location.href.indexOf('?');
         var url = location.href.slice(num + 4);
         $.ajax({
-            url: 'https://api.douban.com/v2/movie/subject/'+url,
+            url: 'https://api.douban.com/v2/movie/subject/' + url,
             type: 'jsonp',
             dataType: 'jsonp',
             success: function (data) {
-                console.log(data)
-                // var html = template(templateTpl, data);
-                // $('#' + templateHtml).html(html)
+                console.log(data);
+                var html = template('infoTpl', data);
+                $('.top').html(html)
             }
         })
     })

@@ -1,0 +1,52 @@
+#center {
+    margin-top: 47px;
+    padding: 20px 18px;
+}
+
+.top h2 {
+    font-weight: 420;
+}
+
+.top .info {
+    width: 100px;
+    height: 140px;
+    float: right;
+}
+
+.top .info {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.listbox {
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.listbox .list {
+    width: 48%;
+    color: #FFC46C;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #FFC46C;
+}
+
+.inApp {
+    text-align: center;
+    display: block;
+    color: #42BD56;
+    padding: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #42BD56;
+    margin: 10px 0 30px;
+}
+
+.toleft {
+    float: left;
+}
+
+.toleft .pj {
+    color: #aaa;
+}
