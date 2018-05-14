@@ -20,15 +20,38 @@
     </ul>
 </div>
 <div id="center">
+
+</div>
+<script id="infoTpl" type="text/html">
     <div class="top">
-        <!--<h2>复仇者联盟</h2>-->
-        <!--<div>-->
-        <!--<div class="toleft">-->
-        <!--<p>评分:{{$value.rating.average}}</p>-->
-        <!--<p>aa</p>-->
-        <!--</div>-->
-        <!--<img class="info" src="" alt="">-->
-        <!--</div>-->
+        <h2>{{$data.title}}</h2>
+        <div>
+            <div class="toright">
+                <a class="info" href="$data.mobile_url"><img src="{{$data.images.small}}" alt=""></a>
+            </div>
+            <div class="toleft">
+                <p class="fz15">
+                    <span>豆瓣评分:{{$data.rating.average}}&nbsp;</span>
+                    <span class="aaa">{{$data.ratings_count}}人评价</span>
+                </p>
+                <p class="fz15">
+                    <span>{{$data.collect_count}}人看过&nbsp;</span>
+                    <span>{{$data.wish_count}}人想看</span>
+                </p>
+                <p class="meta">
+                    {{each $data.genres}}
+                    {{ $value+'/' }}
+                    {{/each}}
+                    {{each $data.directors}}
+                    {{ $value.name+'(导演)/' }}
+                    {{/each}}
+                    {{each $data.casts}}
+                    {{ $value.name+'/' }}
+                    {{/each}}
+                    {{$data.year+'上映'}}
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class="listbox">
@@ -36,17 +59,25 @@
         <div class="list">看过</div>
     </div>
     <a href="" class="inApp">在 App 上保存你的观影足迹</a>
-</div>
-<script id="infoTpl" type="text/html">
-    <h2>{{$data.title}}</h2>
-    <div>
-        <div class="toleft">
-            <span>评分:{{$data.rating.average}}</span>
-            <span class="pj">{{$data.ratings_count}}人评价</span>
-            <p>{{$data.durations}} aa</p>
-        </div>
-        <a href="$data.mobile_url"><img class="info" src="{{$data.images.small}}" alt=""></a>
-    </div>
+    <h2 class="aaa fz15 h2">复仇者联盟3：无限战争的剧情简介</h2>
+    <p class="summary">&nbsp;&nbsp;{{$data.summary}}</p>
+    <!--<h2 class="aaa fz15 h2">影人</h2>-->
+    <!--{{each $data.directors}}-->
+    <!--<div class="box">-->
+    <!--<a href="./info.html?id={{$value.id}}"><img src="{{$value.avatars.small}}" alt=""></a>-->
+    <!--<p class="name fz15">{{$value.name}}</p>-->
+    <!--<p class="aaa">导演</p>-->
+    <!--<a href="{{$value.alt}}">去豆瓣电影查看详情</a>-->
+    <!--</div>-->
+    <!--{{/each}}-->
+    <!--{{each $data.casts}}-->
+    <!--<div class="box">-->
+    <!--<a href="./info.html?id={{$value.id}}"><img src="{{$value.avatars.large}}" alt=""></a>-->
+    <!--<p class="name">{{$value.name}}</p>-->
+    <!--<p class="aaa">演员</p>-->
+    <!--</div>-->
+    <!--{{/each}}-->
+    <a href="{{$data.alt}}" class="inApp">去豆瓣电影查看详情</a>
 </script>
 <script src="./jquery-1.7.2.min.js"></script>
 <script src="./template-web.js"></script>
@@ -61,7 +92,7 @@
             success: function (data) {
                 console.log(data);
                 var html = template('infoTpl', data);
-                $('.top').html(html)
+                $('#center').html(html)
             }
         })
     })

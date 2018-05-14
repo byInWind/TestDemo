@@ -67,15 +67,6 @@
         </div>
     </div>
 </div>
-<script id="top250Tpl" type="text/html">
-    {{each $data.subjects}}
-    <div class="box">
-        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>
-        <p class="name">{{$value.images.title}}</p>
-        <p>评分:{{$value.rating.average}}</p>
-    </div>
-    {{/each}}
-</script>
 <script src="./jquery-1.7.2.min.js"></script>
 <script src="./template-web.js"></script>
 <script>
@@ -94,8 +85,8 @@
                     var render = template.compile('{{each $data.subjects}}\n' +
                         '    <div class="box">\n' +
                         '        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>\n' +
-                        '        <p class="name">{{$value.images.title}}</p>\n' +
-                        '        <p>评分:{{$value.rating.average}}</p>\n' +
+                        '        <p class="name">{{$value.title}}</p>\n' +
+                        '        <p>豆瓣评分:{{$value.rating.average}}</p>\n' +
                         '    </div>\n' +
                         '    {{/each}}');
                     var html = render(data);
