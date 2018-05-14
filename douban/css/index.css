@@ -96,8 +96,11 @@ ul {
 }
 
 .list:nth-child(2) {
-    color: #FFC46C;
     border: 1px solid #FFC46C;
+}
+
+.list:nth-child(2) a {
+    color: #FFC46C;
 }
 
 .list:nth-child(3) {
