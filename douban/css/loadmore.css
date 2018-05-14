@@ -1,0 +1,48 @@
+.listbox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listbox li {
+    width: 33.333%;
+    text-align: center;
+    color: #494949;
+    margin: 20px 0;
+}
+
+#loadmoreHtml {
+    margin-top: 48px;
+    padding-top: 20px;
+    color: #494949;
+    font-size: 12px;
+}
+
+#loadmoreHtml img {
+    width: 92px;
+    height: 130.5px;
+}
+
+#loadmoreHtml .h1 {
+    font-size: 24px;
+    font-weight: normal;
+    padding-left: 4%;
+}
+
+#loadmoreHtml .h3 {
+    font-size: 13px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 5px;
+}
+
+.infoBox div {
+    width: 90px;
+    margin: 0 auto;
+}
+#loadmoreHtml .h5 {
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 4%;
+}

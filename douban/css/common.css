@@ -96,3 +96,7 @@ ul {
 .fz15 {
     font-size: 15px;
 }
+
+.op {
+    opacity: 0.5;
+}

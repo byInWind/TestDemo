@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>仿豆瓣电影</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/loadmore.css">
+</head>
+<body>
+<div id="top">
+    <div class="logo"><h1>豆瓣</h1></div>
+    <ul>
+        <li><a href="./index.html">电影</a></li>
+        <li>图书</li>
+        <li>广播</li>
+        <li>小组</li>
+        <li><a href="search.html"><img src="../img.png" alt=""></a></li>
+    </ul>
+</div>
+<section id="loadmoreHtml">
+
+</section>
+
+<script id="loadmoreTpl" type="text/html">
+    <h1 class="h1">{{$data.title}}</h1>
+    <ul class="listbox">
+        {{each $data.subjects}}
+        <li>
+            <div class="infoBox">
+                <a href="info.html?id={{$value.subject.id}}"><img src="{{$value.subject.images.small}}" alt="加载错误"></a>
+                <div>
+                    <h3 class="h3">{{$value.subject.title}}</h3>
+                    <span class="aaa">豆瓣评分：{{$value.subject.rating.average}}</span>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<script src="../jquery-1.7.2.min.js"></script>
+<script src="../template-web.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'https://api.douban.com/v2/movie/us_box',
+            type: 'get',
+            dataType: 'jsonp',
+            success: function (data) {
+                console.log(data);
+                var html = template('loadmoreTpl', data);
+                $('#loadmoreHtml').html(html)
+            },
+            error: function () {
+                console.log('data');
+
+            }
+        })
+    })
+</script>
+</body>
+</html>

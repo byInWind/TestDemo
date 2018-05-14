@@ -5,12 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>仿豆瓣电影</title>
-    <link rel="stylesheet" href="./common.css">
-    <link rel="stylesheet" href="./search.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/search.css">
 </head>
 <body>
 <header>
-    <span>关闭</span>
+    <span id="close">关闭</span>
     <div><input id="textVal" type="text" placeholder="请输入搜索内容"></div>
     <span id="search">搜索</span>
 </header>
@@ -37,7 +37,7 @@
     <h2 class="aaa fz15 pd10">影视</h2>
     {{each $data.subjects}}
     <div class="infoBox">
-        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
+        <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
         <div>
             <h2 class="fz15">{{$value.title}}</h2>
             <span class="aaa">豆瓣评分：{{$value.rating.average}}</span>
@@ -45,13 +45,15 @@
     </div>
     {{/each}}
 </script>
-<script src="./jquery-1.7.2.min.js"></script>
-<script src="./template-web.js"></script>
+<script src="../jquery-1.7.2.min.js"></script>
+<script src="../template-web.js"></script>
 <script>
     $(function () {
+        $("#close").on('click', function () {
+            window.history.back();
+        });
         $("#search").on('click', function () {
             var textVal = $('#textVal').val();
-            console.log(textVal)
             $.ajax({
                 url: 'https://api.douban.com/v2/movie/search?q=' + textVal,
                 type: 'get',
