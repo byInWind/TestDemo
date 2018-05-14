@@ -88,3 +88,11 @@ ul {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.aaa {
+    color: #aaa;
+}
+
+.fz15 {
+    font-size: 15px;
+}

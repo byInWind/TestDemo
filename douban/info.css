@@ -25,10 +25,6 @@
     overflow: hidden;
 }
 
-.aaa{
-    color: #aaa;
-}
-
 .toleft .meta {
     margin-top: 20px;
     color: #494949;
@@ -62,16 +58,11 @@
     margin: 10px 0 30px;
 }
 
-.fz15 {
-    font-size: 15px;
-}
 .h2 {
     margin: 30px 0 15px;
     font-weight: 400;
 }
-.summary{
-    color: #494949;
-}
-.box img {
 
+.summary {
+    color: #494949;
 }
