@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <span>关闭</span>
+    <span id="close">关闭</span>
     <div><input id="textVal" type="text" placeholder="请输入搜索内容"></div>
     <span id="search">搜索</span>
 </header>
@@ -49,6 +49,9 @@
 <script src="./template-web.js"></script>
 <script>
     $(function () {
+        $("#close").on('click', function () {
+            window.history.back();
+        });
         $("#search").on('click', function () {
             var textVal = $('#textVal').val();
             console.log(textVal)
