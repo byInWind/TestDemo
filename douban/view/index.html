@@ -23,7 +23,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">正在热映</span>
-            <span class="two more"><a href="">更多</a></span>
+            <span class="two more"><a href="./loadMore.html">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="hot_body">
@@ -35,7 +35,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">即将上映</span>
-            <span class="two more"><a href="">更多</a></span>
+            <span class="two more"><a href="./loadMore.html">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="coming_soon_body">
@@ -47,7 +47,7 @@
     <div class="hot">
         <div class="hot_top">
             <span class="one">top250</span>
-            <span class="two more"><a href="">更多</a></span>
+            <span class="two more"><a href="./loadMore.html">更多</a></span>
         </div>
         <div class="hot_body_box">
             <div id="top250_body">
@@ -86,7 +86,7 @@
                         '    <div class="box">\n' +
                         '        <a href="./info.html?id={{$value.id}}"><img src="{{$value.images.large}}" alt=""></a>\n' +
                         '        <p class="name">{{$value.title}}</p>\n' +
-                        '        <p>豆瓣评分:{{$value.rating.average}}</p>\n' +
+                        '        <p class="aaa fz12">豆瓣评分:{{$value.rating.average}}</p>\n' +
                         '    </div>\n' +
                         '    {{/each}}');
                     var html = render(data);

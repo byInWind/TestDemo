@@ -87,6 +87,8 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 16px;
+    margin-top: 3px;
 }
 
 .aaa {
@@ -99,4 +101,8 @@ ul {
 
 .op {
     opacity: 0.5;
+}
+
+.fz12 {
+    font-size: 12px;
 }
