@@ -22,7 +22,7 @@
 <section id="loadmoreHtml">
 
 </section>
-<div id="btn">加载更多</div>
+<div id="btn">正在加载...</div>
 <script id="loadmoreTpl" type="text/html">
     <h1 class="h1">{{$data.title}}</h1>
     <ul id="listbox">
@@ -83,22 +83,40 @@
                 countNum = data.count;
             }
         });
-        $("#btn").on('click', function () {
-            $.ajax({
-                url: 'https://api.douban.com/v2/movie/' + url,
-                type: 'get',
-                data: {
-                    start: startNum + countNum,
-                    count: countNum
-                },
-                dataType: 'jsonp',
-                success: function (data) {
-                    console.log(data);
-                    var html = template('nextTpl', data);
-                    $('#listbox').append(html)
-                }
-            });
-        })
+        // $("#btn").on('click', function () {
+        //     $.ajax({
+        //         url: 'https://api.douban.com/v2/movie/' + url,
+        //         type: 'get',
+        //         data: {
+        //             start: startNum + countNum,
+        //             count: countNum
+        //         },
+        //         dataType: 'jsonp',
+        //         success: function (data) {
+        //             console.log(data);
+        //             var html = template('nextTpl', data);
+        //             $('#listbox').append(html)
+        //         }
+        //     });
+        // });
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                $.ajax({
+                    url: 'https://api.douban.com/v2/movie/' + url,
+                    type: 'get',
+                    data: {
+                        start: startNum + countNum,
+                        count: countNum
+                    },
+                    dataType: 'jsonp',
+                    success: function (data) {
+                        console.log(data);
+                        var html = template('nextTpl', data);
+                        $('#listbox').append(html)
+                    }
+                })
+            }
+        });
     })
 </script>
 </body>
