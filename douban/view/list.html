@@ -22,40 +22,43 @@
 <section id="listHtml">
 
 </section>
-
-<script id="listTpl" type="text/html">
-    <h1 class="h1">{{$data.title}}</h1>
-    <h5 class="h5">{{$data.date}}</h5>
-    <ul class="listbox">
-        {{each $data.subjects}}
-        <li>
-            <div class="infoBox">
-                <a href="info.html?id={{$value.subject.id}}"><img src="{{$value.subject.images.small}}" alt="加载错误"></a>
-                <div class="aaa">
-                    <h3 class="h3">{{$value.subject.title}}</h3>
-                    <p>排名：{{$value.rank}}</p>
-                    <span>
+<div id="btn">加载更多</div>
+<script id="nextTpl" type="text/html">
+    {{each $data.subjects}}
+    <li>
+        <div class="infoBox">
+            <a href="info.html?id={{$value.subject.id}}"><img src="{{$value.subject.images.small}}" alt="加载错误"></a>
+            <div class="aaa">
+                <h3 class="h3">{{$value.subject.title}}</h3>
+                <p>排名：{{$value.rank}}</p>
+                <span>
                     {{if $value.subject.rating.average == 0}}
                     暂无评分
                     {{else}}
                     豆瓣评分:{{$value.subject.rating.average}}&nbsp;
                     {{/if}}
                     </span>
-                    <p>票房：{{$value.box}}</p>
-                    {{if $value.new == true}}
-                    <p>是否已上映：是</p>
-                    {{else}}
-                    <p>是否已上映：否</p>
-                    {{/if}}
-                    <p>类型：
-                        {{each $value.subject.genres}}
-                        {{$value+' '}}
-                        {{/each}}
-                    </p>
-                </div>
+                <p>票房：{{$value.box}}</p>
+                {{if $value.new == true}}
+                <p>是否已上映：是</p>
+                {{else}}
+                <p>是否已上映：否</p>
+                {{/if}}
+                <p>类型：
+                    {{each $value.subject.genres}}
+                    {{$value+' '}}
+                    {{/each}}
+                </p>
             </div>
-        </li>
-        {{/each}}
+        </div>
+    </li>
+    {{/each}}
+</script>
+<script id="listTpl" type="text/html">
+    <h1 class="h1">{{$data.title}}</h1>
+    <h5 class="h5">{{$data.date}}</h5>
+    <ul id="listbox">
+        {{include 'nextTpl'}}
     </ul>
 </script>
 <!-- {{if $index < $value.subject.genres.length}}
@@ -67,6 +70,7 @@
 <script src="../template-web.js"></script>
 <script>
     $(function () {
+        var startNum, countNum;
         $.ajax({
             url: 'https://api.douban.com/v2/movie/us_box',
             type: 'get',
@@ -74,12 +78,26 @@
             success: function (data) {
                 console.log(data);
                 var html = template('listTpl', data);
-                $('#listHtml').html(html)
-            },
-            error: function () {
-                console.log('data');
-
+                $('#listHtml').html(html);
+                startNum = data.start;
+                countNum = data.count;
             }
+        });
+        $("#btn").on('click', function () {
+            $.ajax({
+                url: 'https://api.douban.com/v2/movie/us_box',
+                type: 'get',
+                data: {
+                    start: startNum + countNum,
+                    count: countNum
+                },
+                dataType: 'jsonp',
+                success: function (data) {
+                    console.log(data);
+                    var html = template('nextTpl', data);
+                    $('#listbox').append(html)
+                }
+            });
         })
     })
 </script>

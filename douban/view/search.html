@@ -40,7 +40,13 @@
         <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
         <div>
             <h2 class="fz15">{{$value.title}}</h2>
-            <span class="aaa">豆瓣评分：{{$value.rating.average}}</span>
+            <span class="aaa">
+                {{if $value.rating.average == 0}}
+                    暂无评分
+                    {{else}}
+                    豆瓣评分:{{$value.rating.average}}
+                    {{/if}}
+            </span>
         </div>
     </div>
     {{/each}}

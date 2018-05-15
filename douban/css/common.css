@@ -106,3 +106,12 @@ ul {
 .fz12 {
     font-size: 12px;
 }
+
+#btn {
+    background-color: #f3f3f3;
+    margin: 0 auto;
+    width: 90%;
+    padding: 5px;
+    border-radius: 50px;
+    text-align: center;
+}
