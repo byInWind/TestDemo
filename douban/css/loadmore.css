@@ -1,9 +1,9 @@
-.listbox {
+#listbox {
     display: flex;
     flex-wrap: wrap;
 }
 
-.listbox li {
+#listbox li {
     width: 33.333%;
     text-align: center;
     color: #494949;
@@ -41,8 +41,18 @@
     width: 90px;
     margin: 0 auto;
 }
+
 #loadmoreHtml .h5 {
     font-size: 18px;
     font-weight: normal;
     padding-left: 4%;
+}
+
+#btn {
+    background-color: #f3f3f3;
+    margin: 0 auto;
+    width: 90%;
+    padding: 5px;
+    border-radius: 50px;
+    text-align: center;
 }

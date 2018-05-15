@@ -22,27 +22,31 @@
 <section id="loadmoreHtml">
 
 </section>
-
+<div id="btn">加载更多</div>
 <script id="loadmoreTpl" type="text/html">
     <h1 class="h1">{{$data.title}}</h1>
-    <ul class="listbox">
-        {{each $data.subjects}}
-        <li>
-            <div class="infoBox">
-                <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
-                <div>
-                    <h3 class="h3">{{$value.title}}</h3>
-                    <span class="aaa">豆瓣评分：{{$value.rating.average}}</span>
-                </div>
-            </div>
-        </li>
-        {{/each}}
+    <ul id="listbox">
+        {{include 'nextTpl'}}
     </ul>
+</script>
+<script id="nextTpl" type="text/html">
+    {{each $data.subjects}}
+    <li>
+        <div class="infoBox">
+            <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
+            <div>
+                <h3 class="h3">{{$value.title}}</h3>
+                <span class="aaa">豆瓣评分：{{$value.rating.average}}</span>
+            </div>
+        </div>
+    </li>
+    {{/each}}
 </script>
 <script src="../jquery-1.7.2.min.js"></script>
 <script src="../template-web.js"></script>
 <script>
     $(function () {
+        var startNum, countNum;
         var num = location.href.indexOf('?');
         var url = location.href.slice(num + 6);
         switch (url) {
@@ -61,12 +65,33 @@
         $.ajax({
             url: 'https://api.douban.com/v2/movie/' + url,
             type: 'get',
+            data: {
+                count: 15
+            },
             dataType: 'jsonp',
             success: function (data) {
                 console.log(data);
                 var html = template('loadmoreTpl', data);
-                $('#loadmoreHtml').html(html)
+                $('#loadmoreHtml').html(html);
+                startNum = data.start;
+                countNum = data.count;
             }
+        });
+        $("#btn").on('click', function () {
+            $.ajax({
+                url: 'https://api.douban.com/v2/movie/' + url,
+                type: 'get',
+                data: {
+                    start: startNum + countNum,
+                    count: countNum
+                },
+                dataType: 'jsonp',
+                success: function (data) {
+                    console.log(data);
+                    var html = template('nextTpl', data);
+                    $('#listbox').append(html)
+                }
+            });
         })
     })
 </script>

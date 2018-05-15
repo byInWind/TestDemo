@@ -6,6 +6,8 @@ header {
     border-bottom: 1px solid #e6e6e6;
     top: 0;
     width: 100%;
+    z-index: 99;
+    background-color: white;
 }
 
 header div {
