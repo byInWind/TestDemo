@@ -87,9 +87,11 @@ ul {
     padding: 5px 15px;
     border-radius: 5px;
     border: 1px solid #42BD56;
+    text-decoration: line-through;
 }
 
 .list:nth-child(2) {
+    text-decoration: none;
     border: 1px solid #FFC46C;
 }
 
