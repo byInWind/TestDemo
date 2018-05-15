@@ -1,0 +1,51 @@
+#top {
+    z-index: 9;
+}
+
+#listHtml {
+    margin-top: 48px;
+    padding: 20px 18px;
+    font-size: 12px;
+    color: #494949;
+}
+
+#listHtml .h1 {
+    text-align: center;
+    font-size: 21px;
+}
+
+#listHtml .h5 {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+.infoBox {
+    height: 135px;
+    border-top: 1px solid #e6e6e6;
+    padding-top: 10px;
+}
+
+.infoBox img {
+    width: 75px;
+    height: 112px;
+    position: absolute;
+}
+
+.infoBox h2 {
+    font-size: 16px;
+    font-weight: 420;
+}
+
+.infoBox h3 {
+    font-size: 17px;
+    color: #494949;
+}
+
+.infoBox div {
+    padding-left: 85px;
+}
+
+.infoBox span, .infoBox p {
+    font-size: 13px;
+}

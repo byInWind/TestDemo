@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>仿豆瓣电影</title>
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/loadmore.css">
+    <link rel="stylesheet" href="../css/list.css">
 </head>
 <body>
 <div id="top">
@@ -19,11 +19,11 @@
         <li><a href="search.html"><img src="../img.png" alt=""></a></li>
     </ul>
 </div>
-<section id="loadmoreHtml">
+<section id="listHtml">
 
 </section>
 
-<script id="loadmoreTpl" type="text/html">
+<script id="listTpl" type="text/html">
     <h1 class="h1">{{$data.title}}</h1>
     <h5 class="h5">{{$data.date}}</h5>
     <ul class="listbox">
@@ -31,9 +31,27 @@
         <li>
             <div class="infoBox">
                 <a href="info.html?id={{$value.subject.id}}"><img src="{{$value.subject.images.small}}" alt="加载错误"></a>
-                <div>
+                <div class="aaa">
                     <h3 class="h3">{{$value.subject.title}}</h3>
-                    <span class="aaa">豆瓣评分：{{$value.subject.rating.average}}</span>
+                    <p>排名：{{$value.rank}}</p>
+                    <span>
+                    {{if $value.subject.rating.average == 0}}
+                    暂无评分
+                    {{else}}
+                    豆瓣评分:{{$value.subject.rating.average}}&nbsp;
+                    {{/if}}
+                    </span>
+                    <p>票房：{{$value.box}}</p>
+                    {{if $value.new == true}}
+                    <p>是否已上映：是</p>
+                    {{else}}
+                    <p>是否已上映：否</p>
+                    {{/if}}
+                    <p>类型：
+                        {{each $value.subject.genres}}
+                        {{$value+' '}}
+                        {{/each}}
+                    </p>
                 </div>
             </div>
         </li>
@@ -50,8 +68,8 @@
             dataType: 'jsonp',
             success: function (data) {
                 console.log(data);
-                var html = template('loadmoreTpl', data);
-                $('#loadmoreHtml').html(html)
+                var html = template('listTpl', data);
+                $('#listHtml').html(html)
             },
             error: function () {
                 console.log('data');
