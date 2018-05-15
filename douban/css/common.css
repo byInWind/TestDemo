@@ -46,10 +46,12 @@ ul {
     display: inline-block;
     width: 40px;
     text-align: center;
+    text-decoration: line-through;
 }
 
 #top li:first-child {
     color: #2384E8;
+    text-decoration: none;
 }
 
 #top ul li:last-child img {
