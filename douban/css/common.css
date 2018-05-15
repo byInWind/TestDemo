@@ -49,7 +49,7 @@ ul {
     text-decoration: line-through;
 }
 
-#top li:first-child {
+#top li:first-child a {
     color: #2384E8;
     text-decoration: none;
 }
