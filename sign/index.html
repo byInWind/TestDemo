@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>xxxxxxx</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .left, .right {
+            position: absolute;
+            width: 50%;
+            z-index: 9;
+        }
+
+        .left {
+            left: 0;
+            bottom: 0;
+        }
+
+        .animat1 {
+            animation: animat1 2.1s ease-in;
+        }
+
+        .animat2 {
+            animation: animat2 2.1s ease-in;
+        }
+
+        .right {
+            right: 0;
+            bottom: 0;
+        }
+
+        @keyframes animat1 {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: -20%;
+            }
+
+        }
+
+        @keyframes animat2 {
+            0% {
+                right: 0;
+            }
+            100% {
+                right: -20%;
+            }
+
+        }
+
+        .bell {
+            bottom: 0;
+            width: 50%;
+            position: absolute;
+            transform: translate(-50%, 0);
+            left: 50%;
+            z-index: 99;
+        }
+
+        .light {
+            position: absolute;
+            left: 50%;
+            z-index: 10;
+            bottom: 0;
+            width: 100%;
+            display: none;
+            transform: translate(-50%, 0);
+        }
+
+        .text {
+            width: 50%;
+            position: absolute;
+            margin-left: -25%;
+            left: 50%;
+            top: 73%;
+            z-index: 99;
+            animation: scol 2s infinite;
+        }
+
+        @keyframes scol {
+            0% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(0.95);
+            }
+        }
+
+        .icon {
+            width: 17%;
+            margin-left: -8.5%;
+            position: absolute;
+            transform: translate(-50%, 0);
+            left: 50%;
+            top: 58%;
+            z-index: 99;
+            animation: ico 4s infinite;
+        }
+
+        @keyframes ico {
+            0% {
+                top: 58%;
+                transform: scale(1);
+            }
+            10% {
+                top: 59%;
+                transform: scale(0.8);
+            }
+            60% {
+                top: 63%;
+                transform: scale(0.8);
+            }
+            70% {
+                top: 61%;
+                transform: scale(1);
+            }
+            100% {
+                top: 58%;
+                transform: scale(1);
+            }
+        }
+
+        #bigGif {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 999;
+        }
+
+        body {
+            background: white;
+        }
+
+        @media (max-aspect-ratio: 9/16) {
+            .box {
+                height: 667px;
+                overflow-y: hidden;
+                position: relative;
+                bottom: -0px;
+            }
+
+            html body {
+                background: black;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div style="display: none">
+    <img src="./img/thumb.jpg">
+</div>
+<div class="box">
+    <div class="center">
+        <img src="./img/left.jpg" alt="" class="left">
+        <img src="./img/right.jpg" alt="" class="right">
+        <img src="./img/bell1.gif" alt="" class="bell">
+        <img src="./img/icon.png" alt="" class="icon">
+        <img src="./img/text.png" alt="" class="text">
+        <img src="./img/light.png" alt="" class="light">
+        <audio id="audio1" loop src="./img/audio1.mp3"></audio>
+        <audio id="audio2" src="./img/audio2.mp3"></audio>
+    </div>
+</div>
+<img id="bigGif" src="./img/loading.jpg">
+<script src="jquery-1.7.2.min.js"></script>
+
+<script>
+    $(function () {
+        var prefetch = [
+            './img/onload.gif',
+            './img/bell1.gif',
+            './img/bell2.gif',
+            './img/box.png',
+            './img/left.jpg',
+            './img/red-bg.jpg',
+            './img/1.png',
+            './img/2.png',
+            './img/3.png',
+            './img/4.png',
+            './img/5.png',
+            './img/6.png',
+            './img/7.png',
+            './img/8.png',
+            './img/9.png',
+            './img/10.png',
+            './img/11.png',
+            './img/12.png',
+            './img/13.png',
+            './img/14.png',
+            './img/sign.jpg',
+            './img/sign2.jpg',
+            './img/right.jpg'
+        ];
+        var loaded = {};
+
+        prefetch.forEach(function (src) {
+            var img = new Image();
+            img.onload = function () {
+                loaded[src] = true;
+
+                var allLoaded = true;
+                prefetch.forEach(function (u) {
+                    if (!loaded[u]) {
+                        allLoaded = false;
+                    }
+                });
+
+                if (allLoaded) {
+                    $('#bigGif').css('display', 'none');
+                }
+            };
+            img.src = src;
+
+        });
+        var time1;
+        $('body').on('touchstart', function () {
+            time1 = new Date().getTime();
+            document.getElementById("audio1").play();
+        });
+        $('.center').on('touchend', function () {
+            var time2 = new Date().getTime();
+            if (time2 - time1 >= 500) {
+                clickOrTouch();
+            }
+        });
+        var flag = true;
+        $('.center').on('click', function () {
+            if (flag) {
+                clickOrTouch();
+                flag = false;
+            }
+        });
+
+        function clickOrTouch() {
+            document.getElementById("audio1").pause();
+            document.getElementById("audio2").play();
+            $(".bell").attr('src', './img/bell2.gif');
+            $('.text').animate({'opacity': 1}, function () {
+                $('.text').animate({'opacity': 0}, 1000);
+            });
+            $('.icon').animate({'opacity': 1}, function () {
+                $('.icon').animate({'opacity': 0}, 1000);
+            });
+            $('.left').addClass('animat1');
+            $('.right').addClass('animat2');
+            $('.light').css({'display': 'inline-block'});
+            setTimeout(function () {
+                $('.box').css('display', 'none');
+            }, 2100);
+            $('.light').animate({'opacity': "1"}, function () {
+                $('.light').animate({'opacity': "0"}, 2100, function () {
+                    //跳转
+                    $('#bigGif').css('display', 'block');
+                    $('#bigGif').attr('src', './img/onload.gif');
+                    setTimeout(function () {
+                        location.href = "./next.html";
+                    }, 4500);
+                });
+            });
+        }
+    })
+</script>
+</body>
+</html>

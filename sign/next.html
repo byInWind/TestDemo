@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>xxxxxxxx</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            /*background: url("/asset/event/fortune2018/red-bg.jpg");*/
+            /*background-size: 100%;*/
+            /*禁止长按出现复制粘贴*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+            /*屏蔽ios点击元素时出现的阴影*/
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            font-family: myFont;
+            min-width: 360px;
+            max-height: 640px;
+        }
+
+        @font-face {
+            font-family: myFont;
+            src: url('./img/two.otf')
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img, a {
+            -webkit-touch-callout: none;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #BABABA;
+        }
+
+        input {
+            outline: none;
+            border: 1px solid;
+        }
+
+        h5 {
+            font-weight: normal;
+        }
+
+        #box {
+            position: absolute;
+            top: 72%;
+            width: 90%;
+            margin-left: -45%;
+            left: 50%;
+            /*overflow: hidden;*/
+            z-index: 9;
+        }
+
+        .box {
+            width: 500%;
+            font-size: 0;
+            position: relative;
+            left: -0%;
+        }
+
+        .list {
+            width: 20%;
+            display: inline-block;
+            font-size: 12px;
+            padding-left: 2em;
+            padding-right: 2em;
+            /*position: relative;*/
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .sun {
+            width: 150%;
+            position: absolute;
+            margin-left: -32%;
+            bottom: 33%;
+            animation: rot1 500s linear infinite;
+            /*position: absolute;*/
+            /*z-index: -8;*/
+        }
+
+        @keyframes rot1 {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .tree-left {
+            left: -51%;
+            top: 21.7%;
+            z-index: 1;
+            width: 95%;
+            position: absolute;
+            transform-origin: center bottom;
+            animation: rot2 10s linear infinite;
+        }
+
+        @keyframes rot2 {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(2deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .tree-right {
+            right: -49%;
+            top: 8%;
+            z-index: 1;
+            width: 100%;
+            transform-origin: center bottom;
+            animation: rot3 10s linear infinite;
+            position: absolute;
+        }
+
+        @keyframes rot3 {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(-2deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .bg3 {
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+        }
+
+        .boxx {
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+        }
+
+        .bigName {
+            font-family: myFont;
+            font-size: 20px;
+            color: #a11f16;
+            top: 5px;
+            font-weight: normal;
+            position: absolute;
+        }
+
+        .a, .b {
+            width: 40%;
+        }
+
+        .a, .b, .c, .d, .e, .f, .g, .h, .i, .j {
+            height: 30px;
+            border: 1px solid black;
+            display: inline-block;
+            border-radius: 40px;
+            text-align: center;
+            line-height: 30px;
+            background: #fe4646;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .c, .d, .e {
+            width: 25%;
+            margin-right: 7%;
+        }
+
+        .f, .g, .h, .i {
+            width: 20%;
+            margin-right: 2%;
+        }
+
+        .j {
+            width: 50%;
+            margin-left: 22%;
+        }
+
+        .people {
+            width: 86%;
+            position: absolute;
+            z-index: 1;
+            left: 22%;
+            top: 18%;
+        }
+
+        .sty-body {
+            background: url("./img/red-bg.jpg");
+            background-size: 100%;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            overflow-y: hidden;
+        }
+
+        .goOn {
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            z-index: 9;
+            animation: showAndhiddent 1.5s linear infinite;
+            transform: translate(-50%);
+        }
+
+        @keyframes showAndhiddent {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #signBox {
+            display: none;
+        }
+
+        .sign {
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .user-name {
+            bottom: 44%;
+            left: 50%;
+            color: #a11f16;
+            transform: translate(-50%);
+            position: absolute;
+            text-align: center;
+        }
+
+        .sign-x {
+            width: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: 64%;
+        }
+
+        .sign-content {
+            bottom: 54%;
+            left: 50%;
+            transform: translate(-36%);
+            position: absolute;
+        }
+
+        h6 {
+            font-weight: normal;
+        }
+
+        .lists {
+            width: 42%;
+            bottom: 26%;
+            left: 50%;
+            transform: translate(-50%);
+            position: absolute;
+            font-size: 0;
+        }
+
+        .lists div {
+            font-size: 14px;
+            width: 20%;
+            padding: 0 5px;
+            line-height: 16px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        input::-webkit-input-placeholder {
+            color: white;
+        }
+
+        .lish-h5 {
+            padding-top: 35px;
+        }
+
+        .save {
+            position: absolute;
+            width: 40%;
+            bottom: 7%;
+            left: 46%;
+            margin-left: -15%;
+            animation: scol 2s infinite;
+        }
+
+        @keyframes scol {
+            0% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(0.95);
+            }
+        }
+
+        .top2 {
+            top: 39.5%;
+            position: absolute;
+        }
+
+        .for-transform {
+            transform: translate(0, -100%);
+        }
+
+        /*飘花*/
+        #content {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        #snowflake {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .snowRoll {
+            position: absolute;
+            opacity: 0;
+            -webkit-animation-name: mysnow;
+            -webkit-animation-duration: 20s;
+            -moz-animation-name: mysnow;
+            -moz-animation-duration: 20s;
+            height: 80px;
+        }
+
+        @-webkit-keyframes mysnow {
+            0% {
+                bottom: 100%;
+            }
+            50% {
+                -webkit-transform: rotate(1080deg);
+            }
+            100% {
+                -webkit-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+            }
+        }
+
+        @-moz-keyframes mysnow {
+            0% {
+                bottom: 100%;
+            }
+            50% {
+                -moz-transform: rotate(1080deg);
+            }
+            100% {
+                -moz-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+            }
+        }
+
+        /*飘花*/
+        /*@media (max-aspect-ratio: 9/16) {*/
+        /*.bossbox {*/
+        /*height: 667px;*/
+        /*overflow-y: hidden;*/
+        /*position: relative;*/
+        /*bottom: -0px;*/
+        /*}*/
+
+        /*html body {*/
+        /*background: black;*/
+        /*}*/
+        /*}*/
+        .flower1 {
+            display: none;
+        }
+
+        .btnBox1 {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 12px;
+        }
+
+        .btnBox2 {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btnBox3 {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btnBox4 {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .b {
+            float: right;
+        }
+
+        .inputBtn {
+            color: white;
+            background: #fe4646;
+            border: 1px solid black;
+            border-radius: 40px;
+            width: 45%;
+            height: 30px;
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="display: none">
+    <img src="./img/thumb.jpg">
+</div>
+<div class="bossbox">
+    <div class="sty-body">
+        <img class="sun" src="./img/sun.png" alt="">
+        <img class="tree-left" src="./img/tree-left.png" alt="">
+        <img class="tree-right" src="./img/tree-right.png" alt="">
+        <img class="people" src="./img/2.png" alt="">
+        <img class="bg3" src="./img/bg3.png" alt="">
+
+        <img style="pointer-events: none;" class="boxx" src="./img/box.png" alt="">
+
+        <section id="box">
+            <div class="box">
+                <div class="list">
+                    <h1 class="bigName">御犬神大人：</h1>
+                    <h5 class="lish-h5">吾乃ALOHA神社御犬大神，让我来帮你解签吧！<br>美少年，先告诉我你的姓名和生辰八字</h5>
+                    <div class="btnBox1">
+                        <input class="inputBtn"
+                               id="name"
+                               type="text" placeholder="点击输入姓名">
+                        <a id="showDatePicker"
+                           style="text-align: center;width:45%;float: right;color: white;height: 30px;display: inline-block;padding: 5px 10px;background: #fe4646;border: 1px solid black;border-radius: 40px;">点击选择生日</a>
+                        <span class="time"></span>
+                    </div>
+                </div>
+                <div class="list">
+                    <h1 class="bigName">御犬神大人：</h1>
+                    <h5 class="for-transform">你的感情状态是什么呢?</h5>
+                    <div class="btnBox2">
+                        <span class="x2"></span>
+                        <span class="a">单身</span>
+                        <span class="b">非单身</span>
+                    </div>
+                </div>
+                <div class="list">
+                    <h1 class="bigName">御犬神大人：</h1>
+                    <h5 class="for-transform">你的型号是什么呢?</h5>
+                    <div class="btnBox3">
+                        <span class="x3"></span>
+                        <span class="c">攻</span>
+                        <span class="d">受</span>
+                        <span class="e">攻受皆可</span>
+                    </div>
+                </div>
+                <div class="list">
+                    <h1 class="bigName">御犬神大人：</h1>
+                    <h5 class="for-transform">那么，关于另一半你更看重什么呢？</h5>
+                    <div class="btnBox4">
+                        <span class="x4"></span>
+                        <span class="f">颜值</span>
+                        <span class="g">身材</span>
+                        <span class="h">性格</span>
+                        <span class="i">事业</span>
+                    </div>
+                </div>
+                <div class="list">
+                    <h1 class="bigName">御犬神大人：</h1>
+                    <h5 class="">犬神大人已经了解了你的基本情况，快来看一看你的爱情签/姻缘签吧。</h5>
+                    <span class="j"></span>
+                </div>
+            </div>
+        </section>
+        <audio id="audio3" autoplay loop src="./img/audio3.mp3"></audio>
+        <div class="goOn">}点击继续{</div>
+    </div>
+    <div id="signBox">
+        <audio id="audio4" src="./img/audio4.mp3"></audio>
+        <img class="sign" src="./img/sign.jpg" alt="">
+        <img class="save" src="./img/save.png" alt="">
+        <img class="sign-x" src="./img/daji.png" alt="">
+        <h6 class="sign-content">未知错误</h6>
+        <div class="user-name">who</div>
+        <div class="lists">
+            <div class="lists1">未知错误</div>
+            <div class="lists2">未知错误</div>
+            <div class="lists3">未知错误</div>
+            <div class="lists4">未知错误</div>
+            <div class="lists5">未知错误</div>
+        </div>
+    </div>
+    <img id="img" style="width: 100%;" src="" alt="">
+    <div id='content'>
+        <!-- 飘花 -->
+        <div id="snowflake"></div>
+    </div>
+</div>
+<canvas class="flower1"></canvas>
+</body>
+<script src="jquery-1.7.2.min.js"></script>
+<script src="./img/for-canvas.js"></script>
+<script src="./img/jquery.let_it_canvas.js"></script>
+<!--飘花-->
+<script>
+    $(function () {
+        var snowflakeURl = [
+            './img/flower1.png',
+            './img/flower2.png',
+            './img/flower3.png'
+        ] //js设置数组存储6张花瓣的图片
+
+        var container = $("#content");
+        visualWidth = container.width();
+        visualHeight = container.height();
+        //获取content的宽高
+        ///////
+        //飘雪花 //
+        ///////
+        function snowflake() {
+            // 雪花容器
+            var $flakeContainer = $('#snowflake');
+
+            // 随机六张图
+            function getImagesName() {
+                return snowflakeURl[[Math.floor(Math.random() * 3)]];
+            }
+
+            // 创建一个雪花元素
+            function createSnowBox() {
+                var url = getImagesName();
+                return $('<div class="snowbox" />').css({
+                    'width': 21,
+                    'height': 21,
+                    'position': 'absolute',
+                    'backgroundSize': 'cover',
+                    'zIndex': 100000,
+                    'top': '-41px',
+                    'backgroundImage': 'url(' + url + ')'
+                }).addClass('snowRoll');
+            }
+
+            // 开始飘花
+            setInterval(function () {
+                var startPositionLeft = Math.random() * visualWidth - 50,
+                    startOpacity = 1,
+                    endPositionTop = visualHeight,
+                    endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+                    duration = visualHeight * 10 + Math.random() * 5000;
+
+                // 随机透明度，不小于0.5
+                var randomStart = Math.random();
+                randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+                // 创建一个雪花
+                var $flake = createSnowBox();
+                // 设计起点位置
+                $flake.css({
+                    left: startPositionLeft,
+                    opacity: randomStart
+                });
+                // 加入到容器
+                $flakeContainer.append($flake);
+                // 开始执行动画
+                $flake.transition({
+                    top: endPositionTop,
+                    left: endPositionLeft,
+                    opacity: 0.7
+                }, duration, 'ease-out', function () {
+                    $(this).remove() //结束后删除
+                });
+
+            }, 500);
+        }
+
+        snowflake()
+        //执行函数
+    })
+</script>
+<script>
+    $(function () {
+        document.body.addEventListener('touchstart', function (ev) {
+            document.getElementById("audio3").play();
+        });
+
+        var windowHeight = $(window).height();
+        $('.sty-body').height(650);
+        if ($('.sty-body').height() > windowHeight) {
+            $('.sty-body').height(windowHeight);
+        }
+        if ($('.sty-body').width() == 414) {
+            $('.sty-body').height(700);
+        }
+        $('#content').height(650);
+        if ($('#content').height() > windowHeight) {
+            $('#content').height(windowHeight);
+        }
+        $('body').height(650);
+        if ($('body').height() > windowHeight) {
+            $('body').height(windowHeight);
+        }
+        var arr = [
+            {
+                "num": '0',
+                "A": "在你这个年纪有48%的人和你一样是单身，泰戈尔曾经说过不是你遇见爱情才相信爱情，是你相信爱情，才会遇见爱情。",
+                "B": "在你这个年纪有52%的人和你一样幸福安宁，经历过了风风雨雨，爱情的果实会更加香甜。",
+                "A2": "在你这个年纪有60%的人和你一样是单身，最好的人总是在不经意时出现，等待爱情吧。",
+                "B2": "在你这个年纪有40%的人和你一样已经收获幸福，最好的时光，最好的你们，最好的爱情。"
+            }, {
+                "num": '1',
+                "A": "在你这个年纪，XXX",
+                "A2": "在你这个年纪。xxx",
+                "A3": "在你这个年纪xxx",
+                "B": "在你这个年纪，xxxx",
+                "B2": "在你这个年纪aaaa",
+                "B3": "在你这个年纪，awertyu",
+                "C": "在你这个年纪，asdgfhj",
+                "C2": "在你这个年纪，dfghj",
+                "C3": "在你这个年纪，sdsfgdhf",
+                "D": "在你这个年纪，sdfghdf",
+                "D2": "在你这个年纪，jhfgdfsdsd",
+                "D3": "在你这个年纪，lkjhgf"
+            }, {
+                "num": '2',
+                "A": "有46%的人和你一样，最看重颜值，萝卜青菜各有所爱，这是一个看脸的世界。",
+                "B": "有25%的人和你一样，最看重身材。",
+                "C": "有21%的人和你一样，最看重性格，谈对象性格合拍才行。",
+                "D": "有8%的人和你一样，最看重事业，一起努力挣钱环游世界。"
+            }, {
+                "num": '3',
+                "A": "爱情签",
+                "B": "姻缘签"
+            }, {
+                "num": '4',
+                "A": "./img/daji.png",
+                "B": "./img/xiaoji.png",
+                "C": "./img/ji.png",
+                "D": "./img/xiong.png",
+                "E": "./img/xiaoxiong.png",
+                "F": "./img/daxiong.png"
+            }, {
+                "num": '5',
+                "A1": ["百里挑yi", "wwww", "坚持wwerty"],
+                "A00": "yuiop",
+                "A01": "56rt7y890",
+                "A4": ["hgfgjh", "gfhjhklj;", "禁止，让不让人活！禁止一一恋！"],
+                "B1": "幸运，拥有他胜过多少野花野草",
+                "B2": "兴旺，",
+                "B3": ["嘴馋，天冷了,吃口热乎的吧", "青春，被狗吃了", "都行，来者都是客儿", "努力，鸡年的努力在狗年的泼水节见", "ewtyu890"],
+                "C1": ["yrutyi", "fghfjm", "fghjkl", "心酸，含泪的日子不好过。"],
+                "C2": "辛勤耕耘,泼洒狗粮",
+                "C3": "石头剪刀布",
+                "C4": "温暖，冬日里把他拥入怀中胜过多少暖阳",
+                "D": ["爱情，狗带", "佛系，你养蛙蛙了么", "瘦，到了这个年纪或许 这个“瘦”更重要", "友谊，姐妹比男人重要。（在大多数时间）", "自持"],
+                "E": "贪吃，天冷了 吃口热乎的吧",
+                "F": ["化解", "前任，是狗！", "绝地求生，同龄中82%的概率, “大吉大利，今晚吃鸡!", "成长，新年别在网恋！"]
+            }, {
+                "num": '6',
+                "A": ["敢爱敢恨", "纯净如水", "三观很直", "没有心机", "自强独立"],
+                "B": ["爱而自持", "专一始终", "前戏大师", "傲娇闷骚", "佛系美男"],
+                "C": ["纠结要死", "好奇心重", "文艺浪子", "风流痞子", "戏精本人"],
+                "D": ["外冷内热", "超级暖男", "绝对顾家", "做饭好吃", "床上好用"],
+                "E": ["白天霸道", "夜晚傲娇", "缺安全感", "控制欲强", "热情似火"],
+                "F": ["内心敏感", "史诗强迫", "才貌双全", "阳光明媚", "爱如春雨"],
+                "G": ["温柔倔强", "治愈暖男", "选择困难", "外貌协会", "撩高手"],
+                "H": ["占有欲强", "耿直男孩", "坚硬如铁", "内心柔软", "超爱吃醋"],
+                "I": ["脱缰野马", "大众情人", "如风男子", "崇尚自由", "感觉敏锐"],
+                "J": ["内心戏足", "实力闷骚", "柔情似水", "外冷内热", "特别靠谱"],
+                "K": ["情商很高", "进退有度", "收放自如", "口是心非", "与众不同"],
+                "L": ["外表花心", "内心深情", "感情细腻", "善解人意", "脾气超好"]
+            }
+        ];
+
+        function f4() {
+            $('.goOn').on('click', function () {
+                $('.box').css("left", '-400%');
+                $('.goOn').css("display", 'none');
+                if ($('.a').attr('data-id') == 1) {
+                    $(".j").html("生成我的姻缘签");
+                } else {
+                    $(".j").html("生成我的爱情签");
+                }
+                setTimeout(function () {
+                    people.attr('src', './img/10.png');
+                    setTimeout(function () {
+                        people.attr('src', './img/11.png');
+                    }, 500);
+                }, 800);
+            });
+        }
+
+        $("body").css('opacity', '0');
+        $("body").animate({'opacity': '0'}, function () {
+            $("body").animate({'opacity': '1'}, 1000, function () {
+                $("body").css('background', 'black');
+                var year, month, day, people, timeResult, flag = true;
+                $('#showDatePicker').on('click', function () {
+                    weui.datePicker({
+                        start: 1960,
+                        end: new Date().getFullYear(),
+                        onConfirm: function (result) {
+                            timeResult = result;
+                            year = timeResult[0].value;
+                            month = timeResult[1].value;
+                            day = timeResult[2].value;
+
+                            $('#showDatePicker').css('display', 'none');
+                            $('.time').css({
+                                'display': 'inline-block',
+                                'width': '45%',
+                                'color': 'white',
+                                'text-align': 'center',
+                                'background': '#fe4646',
+                                'height': '30px',
+                                'border': '1px solid black',
+                                'border-radius': '40px',
+                                'float': 'right',
+                                'line-height': '30px'
+                            }).html(year + '-' + month + '-' + day);
+                        }
+                    });
+                });
+
+                $('.list').on('click', function (e) {
+                        var e_class = $(e.target).attr('class');
+                        switch (e_class) {
+                            case "a":
+                                if (year <= 1993) {
+                                    $(this).find("div").find(".a").parent('div').siblings('h5').html(arr[0].A);
+                                } else {
+                                    $(this).find("div").find(".a").parent('div').siblings('h5').html(arr[0].A2);
+                                }
+                                $(this).find("div").find(".a").parent('div').siblings('h5').removeClass('for-transform').css({
+                                        'position': 'absolute',
+                                        'top': '32%',
+                                        'width': '18%'
+                                    }
+                                )
+                                ;
+                                $(".x2").attr('data-id', '1');
+                                $('.people').attr('src', './img/4.png');
+                                $('.a').css('background', '#ab1710');
+                                $('.a').css('display', 'none');
+                                $('.b').css('display', 'none');
+                                $('.goOn').on('click', function () {
+                                    $('.box').css("left", '-200%');
+                                });
+                                break;
+                            case
+                            "b"
+                            :
+                                if (year <= 1993) {
+                                    $(this).find("div").find(".b").parent('div').siblings('h5').html(arr[0].B);
+                                } else {
+                                    $(this).find("div").find(".b").parent('div').siblings('h5').html(arr[0].B2);
+                                }
+                                $(this).find("div").find(".b").parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $(".x2").attr('data-id', '0');
+                                $('.people').attr('src', './img/2.png');
+                                $('.b').css('background', '#ab1710');
+                                $('.a').css({'display': 'none'});
+                                $('.b').css({'display': 'none'});
+                                $('.goOn').on('click', function () {
+                                    $('.box').css("left", '-200%');
+                                });
+                                break;
+                            case
+                            "c"
+                            :
+                                if (year > 1993) {
+                                    if ($('.x2').attr('data-id') == 1) {
+                                        $(this).find("div").find(".c").parent('div').siblings('h5').html(arr[1].A);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".c").parent('div').siblings('h5').html(arr[1].B);
+                                    }
+                                } else {
+                                    if ($('.x2').attr('data-id') == 1) {
+                                        $(this).find("div").find(".c").parent('div').siblings('h5').html(arr[1].C);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".x2").parent('div').siblings('h5').html(arr[1].D);
+                                    }
+                                }
+                                $(this).find("div").find(".c").parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.x3').attr('data-id', '1');
+                                $('.people').attr('src', './img/6.png');
+                                $('.c').css('display', 'none');
+                                $('.d').css('display', 'none');
+                                $('.e').css('display', 'none');
+                                $('.goOn').on('click', function () {
+                                    $('.box').css("left", '-300%');
+                                });
+                                break;
+                            case
+                            "d"
+                            :
+                                if (year > 1993) {
+                                    if ($('.x2').attr('data-id') == 1) {
+                                        $(this).find("div").find(".d").parent('div').siblings('h5').html(arr[1].A2);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".d").parent('div').siblings('h5').html(arr[1].B2);
+                                    }
+                                } else {
+                                    if ($('.x2').attr('data-id') == 1) {
+                                        $(this).find("div").find(".d").parent('div').siblings('h5').html(arr[1].C2);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".d").parent('div').siblings('h5').html(arr[1].D2);
+                                    }
+                                }
+                                $(this).find("div").find(".d").parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.x3').attr('data-id', '0');
+                                $('.people').attr('src', './img/7.png');
+                                $('.d').css('display', 'none');
+                                $('.c').css('display', 'none');
+                                $('.e').css('display', 'none');
+                                $('.goOn').on('click', function () {
+                                    $('.box').css("left", '-300%');
+                                });
+                                break;
+                            case
+                            "e"
+                            :
+                                if (year > 1993) {
+                                    if ($('.a').attr('data-id') == 1) {
+                                        $(this).find("div").find(".e").parent('div').siblings('h5').html(arr[1].A3);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".e").parent('div').siblings('h5').html(arr[1].B3);
+                                    }
+                                } else {
+                                    if ($('.a').attr('data-id') == 1) {
+                                        $(this).find("div").find(".e").parent('div').siblings('h5').html(arr[1].C3);
+                                    }
+                                    else {
+                                        $(this).find("div").find(".e").parent('div').siblings('h5').html(arr[1].D3);
+                                    }
+                                }
+                                $(this).find("div").find(".e").parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.x3').attr('data-id', '0.5');
+                                $('.people').attr('src', './img/2.png');
+                                $('.e').css('display', 'none');
+                                $('.d').css('display', 'none');
+                                $('.c').css('display', 'none');
+                                $('.goOn').on('click', function () {
+                                    $('.box').css("left", '-300%');
+                                });
+                                break;
+                            case
+                            "f"
+                            :
+                                $('.f').css('display', 'none');
+                                $('.g').css('display', 'none');
+                                $('.h').css('display', 'none');
+                                $('.i').css('display', 'none');
+                                $('.f').parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.people').attr('src', './img/9.png');
+                                $(this).find(".x4").parent('div').siblings('h5').html(arr[2].A);
+                                f4();
+                                break;
+                            case
+                            "g"
+                            :
+                                $('.g').css('display', 'none');
+                                $('.f').css('display', 'none');
+                                $('.h').css('display', 'none');
+                                $('.i').css('display', 'none');
+                                $('.g').parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.people').attr('src', './img/9.png');
+                                $(this).find(".x4").parent('div').siblings('h5').html(arr[2].B);
+                                f4();
+                                break;
+                            case
+                            "h"
+                            :
+                                $('.h').css('display', 'none');
+                                $('.g').css('display', 'none');
+                                $('.f').css('display', 'none');
+                                $('.i').css('display', 'none');
+                                $('.h').parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.people').attr('src', './img/9.png');
+                                $(this).find(".x4").parent('div').siblings('h5').html(arr[2].C);
+                                f4();
+                                break;
+                            case
+                            "i"
+                            :
+                                $('.i').css('display', 'none');
+                                $('.g').css('display', 'none');
+                                $('.h').css('display', 'none');
+                                $('.f').css('display', 'none');
+                                $('.i').parent('div').siblings('h5').removeClass('for-transform').css({
+                                    'position': 'absolute',
+                                    'top': '32%',
+                                    'width': '18%'
+                                });
+                                $('.people').attr('src', './img/9.png');
+                                $(this).find(".x4").parent('div').siblings('h5').html(arr[2].D);
+                                f4();
+                                break;
+                            case
+                            "j"
+                            :
+                                if (flag) {
+                                    $('.j').siblings('h5').css({
+                                        'position': 'absolute',
+                                        'top': '32%',
+                                        'width': '18%'
+                                    });
+                                    flag = false;
+                                    // 过渡的动画：樱花飘落
+                                    $("canvas.flower1").css({
+                                        'top': '-100%',
+                                        'left': '0',
+                                        'width': '100%',
+                                        'height': '100%',
+                                        'display': 'block',
+                                        'position': 'fixed',
+                                        'z-index': '9999999'
+                                    });
+                                    $("canvas.flower1").let_it_snow({
+                                        windPower: 0,
+                                        speed: 2,
+                                        count: 50,
+                                        size: 10,
+                                        image: "/asset/event/fortune2018/flower1.png"
+                                    });
+                                    $("canvas.flower1").animate({'top': '0'}, 5000);
+                                    $("body").animate({'opacity': '1'}, function () {
+                                        $("body").animate({'opacity': '0'}, 5000);
+                                    });
+                                    setTimeout(function () {
+                                        //出签
+                                        $("body").animate({'opacity': '1'}, 1000);
+                                        $('#signBox').css({'position': 'relative'})
+                                        $('#signBox').height(650);
+                                        if ($('#signBox').height() > windowHeight) {
+                                            $('#signBox').height(630);
+                                        }
+                                        if ($(window).width() == 414) {
+                                            $('#signBox').height(730)
+                                        }
+                                        if ($(window).width() == 360) {
+                                            $('#signBox').height(630)
+                                        }
+                                        document.querySelector('#audio3').pause();
+                                        document.getElementById("audio4").play();
+                                        document.body.addEventListener('touchstart', function (ev) {
+                                            document.querySelector('#audio3').pause();
+                                            document.getElementById("audio4").play();
+                                        });
+                                        $(".sty-body").css("display", "none");
+                                        $("body").css("background-size", '0');
+
+                                        //如果签的字多于15个字，另写个样式
+                                        function top(xxx) {
+                                            if (xxx.length <= 12) {
+                                                $('.sign-content').css({'bottom': '55%', 'font-size': '15px'});
+                                            }
+                                            else if (xxx.length > 12 && (xxx.length <= 20)) {
+                                                $('.sign-content').css({'bottom': '55%'});
+                                            }
+                                        }
+
+                                        //前几个字变色
+                                        function str(str) {
+                                            var s = str.indexOf('，');
+                                            var a = str.substr(0, s + 1).fontcolor('#a11f16');
+                                            var b = str.substr(s + 1);
+                                            return a + b;
+                                        }
+
+                                        if ($('.x2').attr('data-id') == 1) {
+                                            $('.sign').attr('src', './img/sign.jpg')
+                                        } else {
+                                            $('.sign').attr('src', './img/sign2.jpg')
+                                        }
+
+                                        if (year < 1993) {
+                                            if ($('.x2').attr('data-id') == 1) {
+                                                //单身
+                                                if ($('.x3').attr('data-id') == 1) {
+                                                    //大ji
+                                                    var num = Math.floor(Math.random() * 3);
+                                                    $('.sign-content').html(str(arr[5].A4[num]));
+                                                    $('.sign-x').attr("src", arr[4].A);
+                                                    top(arr[5].A4[num]);
+                                                } else if ($('.x3').attr('data-id') == 0) {
+                                                    //    xiao凶
+                                                    var num = Math.floor(Math.random() * 6);
+                                                    $('.sign-content').html(str(arr[5].D[num]));
+                                                    $('.sign-x').attr("src", arr[4].E);
+                                                    top(arr[5].D[num])
+                                                } else {
+                                                    //    xiao ji
+                                                    var num = Math.floor(Math.random() * 6);
+                                                    $('.sign-content').html(str(arr[5].B3[num]));
+                                                    $('.sign-x').attr("src", arr[4].B);
+                                                    top(arr[5].B3[num])
+                                                }
+                                            } else {
+                                                if ($('.x3').attr('data-id') == 1) {
+                                                    //ji
+                                                    $('.sign-content').html(str(arr[5].C4));
+                                                    $('.sign-x').attr("src", arr[4].C);
+                                                    top(arr[5].C4);
+                                                } else if ($('.x3').attr('data-id') == 0) {
+                                                    //    xiao ji
+                                                    $('.sign-content').html(str(arr[5].B1));
+                                                    $('.sign-x').attr("src", arr[4].B);
+                                                    top(arr[5].B1);
+                                                } else {
+                                                    // xiao ji
+                                                    $('.sign-content').html(str(arr[5].B2));
+                                                    $('.sign-x').attr("src", arr[4].B);
+                                                    top(arr[5].B2);
+                                                }
+                                            }
+                                        } else {
+                                            if ($('.x2').attr('data-id') == 1) {
+                                                //单身
+                                                if ($('.x3').attr('data-id') == 1) {
+                                                    //大ji
+                                                    var num = Math.floor(Math.random() * 4);
+                                                    $('.sign-content').html(str(arr[5].A1[num]));
+                                                    $('.sign-x').attr("src", arr[4].A);
+                                                    top(arr[5].A1[num])
+
+                                                } else if ($('.x3').attr('data-id') == 0) {
+                                                    //    da凶
+                                                    var num = Math.floor(Math.random() * 5);
+                                                    $('.sign-content').html(str(arr[5].F[num]));
+                                                    $('.sign-x').attr("src", arr[4].F);
+                                                    top(arr[5].F[num])
+
+                                                } else {
+                                                    //    ji
+                                                    var num = Math.floor(Math.random() * 5);
+                                                    $('.sign-content').html(str(arr[5].C1[num]));
+                                                    $('.sign-x').attr("src", arr[4].C);
+                                                    top(arr[5].C1[num])
+                                                }
+                                            } else {
+                                                if ($('.x3').attr('data-id') == 1) {
+                                                    //大ji
+                                                    $('.sign-content').html(str(arr[5].A00));
+                                                    $('.sign-x').attr("src", arr[4].A);
+                                                    top(arr[5].A00)
+                                                } else if ($('.x3').attr('data-id') == 0) {
+                                                    //    daji
+                                                    $('.sign-content').html(str(arr[5].A01));
+                                                    $('.sign-x').attr("src", arr[4].A);
+                                                    top(arr[5].A01)
+
+                                                } else {
+                                                    //    ji
+                                                    $('.sign-content').html(str(arr[5].C3));
+                                                    $('.sign-x').attr("src", arr[4].C);
+                                                    top(arr[5].C3);
+                                                }
+                                            }
+                                        }
+                                        if (day === 1 || day === 2 || day === 3 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
+                                            day = '0' + day;
+                                        } else {
+                                            day = day;
+                                        }
+                                        var timeNum = Number(month + '' + day);
+                                        var arr6 = arr[6];
+                                        if (321 <= timeNum && timeNum <= 419) {
+                                            $('.lists1').html(arr6.A[0]);
+                                            $('.lists2').html(arr6.A[1]);
+                                            $('.lists3').html(arr6.A[2]);
+                                            $('.lists4').html(arr6.A[3]);
+                                            $('.lists5').html(arr6.A[4]);
+                                        } else if (420 <= timeNum && timeNum <= 520) {
+                                            $('.lists1').html(arr6.B[0]);
+                                            $('.lists2').html(arr6.B[1]);
+                                            $('.lists3').html(arr6.B[2]);
+                                            $('.lists4').html(arr6.B[3]);
+                                            $('.lists5').html(arr6.B[4]);
+                                        } else if (521 <= timeNum && timeNum <= 621) {
+                                            $('.lists1').html(arr6.C[0]);
+                                            $('.lists2').html(arr6.C[1]);
+                                            $('.lists3').html(arr6.C[2]);
+                                            $('.lists4').html(arr6.C[3]);
+                                            $('.lists5').html(arr6.C[4]);
+                                        } else if (622 <= timeNum && timeNum <= 722) {
+                                            $('.lists1').html(arr6.D[0]);
+                                            $('.lists2').html(arr6.D[1]);
+                                            $('.lists3').html(arr6.D[2]);
+                                            $('.lists4').html(arr6.D[3]);
+                                            $('.lists5').html(arr6.D[4]);
+                                        } else if (723 <= timeNum && timeNum <= 822) {
+                                            $('.lists1').html(arr6.E[0]);
+                                            $('.lists2').html(arr6.E[1]);
+                                            $('.lists3').html(arr6.E[2]);
+                                            $('.lists4').html(arr6.E[3]);
+                                            $('.lists5').html(arr6.E[4]);
+                                        } else if (823 <= timeNum && timeNum <= 922) {
+                                            $('.lists1').html(arr6.F[0]);
+                                            $('.lists2').html(arr6.F[1]);
+                                            $('.lists3').html(arr6.F[2]);
+                                            $('.lists4').html(arr6.F[3]);
+                                            $('.lists5').html(arr6.F[4]);
+                                        } else if (923 <= timeNum && timeNum <= 1023) {
+                                            $('.lists1').html(arr6.G[0]);
+                                            $('.lists2').html(arr6.G[1]);
+                                            $('.lists3').html(arr6.G[2]);
+                                            $('.lists4').html(arr6.G[3]);
+                                            $('.lists5').html(arr6.G[4]);
+                                        } else if (1024 <= timeNum && timeNum <= 1221) {
+                                            $('.lists1').html(arr6.H[0]);
+                                            $('.lists2').html(arr6.H[1]);
+                                            $('.lists3').html(arr6.H[2]);
+                                            $('.lists4').html(arr6.H[3]);
+                                            $('.lists5').html(arr6.H[4]);
+                                        } else if (120 <= timeNum && timeNum <= 218) {
+                                            $('.lists1').html(arr6.I[0]);
+                                            $('.lists2').html(arr6.I[1]);
+                                            $('.lists3').html(arr6.I[2]);
+                                            $('.lists4').html(arr6.I[3]);
+                                            $('.lists5').html(arr6.I[4]);
+                                        } else if (219 <= timeNum && timeNum <= 320) {
+                                            $('.lists1').html(arr6.J[0]);
+                                            $('.lists2').html(arr6.J[1]);
+                                            $('.lists3').html(arr6.J[2]);
+                                            $('.lists4').html(arr6.J[3]);
+                                            $('.lists5').html(arr6.J[4]);
+                                        } else if (321 <= timeNum && timeNum <= 419) {
+                                            $('.lists1').html(arr6.K[0]);
+                                            $('.lists2').html(arr6.K[1]);
+                                            $('.lists3').html(arr6.K[2]);
+                                            $('.lists4').html(arr6.K[3]);
+                                            $('.lists5').html(arr6.K[4]);
+                                        } else {
+                                            //摩羯座12月22日～1月19日
+                                            $('.lists1').html(arr6.L[0]);
+                                            $('.lists2').html(arr6.L[1]);
+                                            $('.lists3').html(arr6.L[2]);
+                                            $('.lists4').html(arr6.L[3]);
+                                            $('.lists5').html(arr6.L[4]);
+                                        }
+
+                                        $('.user-name').html($("#name").val());
+                                        $("#signBox").css("display", "block");
+                                        $("#content").css("display", "none");
+                                        $("canvas").css("display", "none");
+                                    }, 6000);
+                                    break;
+                                }
+                        }
+                    }
+                );
+
+                $('.goOn').on('click', function () {
+                    if (timeResult && $('#name').val()) {
+                        $('.box').css("left", '-100%');
+                        $('.goOn').unbind('click');
+                    }
+                })
+            })
+        })
+
+    })
+</script>
+</html>
