@@ -36,19 +36,21 @@
 <script id="searchTpl" type="text/html">
     <h2 class="aaa fz15 pd10">影视</h2>
     {{each $data.subjects}}
-    <div class="infoBox">
-        <a href="info.html?id={{$value.id}}"><img src="{{$value.images.small}}" alt="加载错误"></a>
-        <div>
-            <h2 class="fz15">{{$value.title}}</h2>
-            <span class="aaa">
+    <a href="info.html?id={{$value.id}}">
+        <div class="infoBox">
+            <img src="{{$value.images.small}}" alt="加载错误">
+            <div>
+                <h2 class="fz15">{{$value.title}}</h2>
+                <span class="aaa">
                 {{if $value.rating.average == 0}}
                     暂无评分
                     {{else}}
                     豆瓣评分:{{$value.rating.average}}
                     {{/if}}
             </span>
+            </div>
         </div>
-    </div>
+    </a>
     {{/each}}
 </script>
 <script src="../jquery-1.7.2.min.js"></script>

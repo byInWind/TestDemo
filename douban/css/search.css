@@ -39,6 +39,7 @@ header input {
     background-color: #f3f3f3;
     width: 100%;
     text-indent: 5px;
+    border-radius: 5px;
 }
 
 .listbox {

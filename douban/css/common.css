@@ -49,11 +49,12 @@ ul {
     text-decoration: line-through;
 }
 
-#top li:first-child a {
-    color: #2384E8;
+#top li:first-child {
     text-decoration: none;
 }
-
+#top li:first-child a {
+    color: #2384E8;
+}
 #top ul li:last-child img {
     width: 24px;
     height: 18px;
@@ -110,10 +111,10 @@ ul {
 }
 
 #btn {
-    background-color: #f3f3f3;
-    margin: 0 auto;
-    width: 90%;
-    padding: 5px;
-    border-radius: 50px;
+    /*background-color: #f3f3f3;*/
+    /*margin: 0 auto;*/
+    /*width: 90%;*/
+    /*padding: 5px;*/
+    /*border-radius: 50px;*/
     text-align: center;
 }
