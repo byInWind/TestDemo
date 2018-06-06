@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>一文</title>
+    <style>
+        header {
+            width: 60px;
+            height: 42px;
+            font-size: 30px;
+            color: tan;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin-left: -30px;
+            animation: scl 3s linear infinite;
+        }
+
+        @keyframes scl {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #begin {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            margin-left: -48px;
+            text-decoration: none;
+            color: #4e2424;
+            animation: big 3s linear infinite;
+        }
+
+        @keyframes big {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.5);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>一文</header>
+<a id="begin" href="index.html">点击开始阅读</a>
+</body>
+</html>
