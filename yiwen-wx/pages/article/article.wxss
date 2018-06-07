@@ -1,11 +1,14 @@
-     h1 {
+     .body{
+                   background-color: #C7EDCC;
+     }
+     .title {
             font-size: 18px;
             text-align: center;
         }
         p {
             text-indent: 2rem;
         }
-        div {
+        .div {
             text-align: center;
         }
         #next {

@@ -1,2 +1,8 @@
 <!--pages/article/pages.wxml-->
-<button bindtap="clickMe">点击我</button>
+<view class='body'>
+<view id="next" bindtap="clickMe">换一篇</view>
+ <view class='title'>{{title}}</view>
+    <view class='div'>作者:{{author}}</view>
+    <view>{{content}}</view>
+    <view class='div'>字数:{{wc}}</view>
+</view>

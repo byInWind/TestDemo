@@ -1,13 +1,13 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/article/article",
+  "pages":[
+    "pages/index/index", 
+    "pages/article/article",        
     "pages/logs/logs"
   ],
-  "window": {
-    "backgroundTextStyle": "light",
+  "window":{
+    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "一文",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarTextStyle":"#fff"
   }
 }

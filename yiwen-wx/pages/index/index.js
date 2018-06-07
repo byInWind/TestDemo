@@ -11,7 +11,7 @@ Page({
   clickMe: function () {
     console.log(111);
     wx.request({
-      url: 'https://interface.meiriyiwen.com/article/today?dev=1', 
+      url: 'https://interface.meiriyiwen.com/article/today?dev=1',
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -21,6 +21,6 @@ Page({
     })
   },
   onLoad: function () {
-   
+
   }
 })
