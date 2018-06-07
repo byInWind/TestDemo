@@ -1,0 +1,36 @@
+    #titles {
+            width: 60px;
+            height: 42px;
+            font-size: 30px;
+            color: tan;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin-left: -30px;
+            animation: scl 3s linear infinite;
+        }
+        @keyframes scl {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        #begin {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            margin-left: -48px;
+            text-decoration: none;
+            color: #4e2424;
+            animation: big 3s linear infinite;
+        }
+        @keyframes big {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.5);
+            }
+        }

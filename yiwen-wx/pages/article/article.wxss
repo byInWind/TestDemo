@@ -1,0 +1,18 @@
+     h1 {
+            font-size: 18px;
+            text-align: center;
+        }
+        p {
+            text-indent: 2rem;
+        }
+        div {
+            text-align: center;
+        }
+        #next {
+            position: absolute;
+            right: 0;
+            padding: 5px;
+            border-radius: 5px 0 0 5px;
+            color: #f5ecec;
+            background-color: #76a277;
+        }
