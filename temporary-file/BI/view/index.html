@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BI</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../assets/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../assets/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/lib/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<section class="container-fluid">
+    <header>
+        <span class="ico" style="background: url('../assets/image/img.png')"></span>
+        <span class="user" style="background: url('../assets/image/img.png')"></span>
+        <div class="tab tab1 pull-right">
+            <ul>
+                <li class="active1">首页</li>
+                <li>分类1</li>
+                <li>分类2</li>
+                <li>分类3</li>
+            </ul>
+        </div>
+    </header>
+    <!--人数-->
+    <div class="row num">
+        <div class="col-md-4 text-center">
+            <div class="">
+                <div class="">
+                    <p><b class="font-48">1,222,333</b></p>
+                    <p><b>直播Tab活跃人数</b></p>
+                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
+                            class="icon-down"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="">
+                <div class="">
+                    <p><b class="font-48">1,222,333</b></p>
+                    <p><b>直播Tab活跃人数</b></p>
+                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
+                            class="icon-down"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="">
+                <div class="">
+                    <p><b class="font-48">1,222,333</b></p>
+                    <p><b>直播Tab活跃人数</b></p>
+                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
+                            class="icon-down"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-------------------------------------------------------指标走势分布图-->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="">
+                    <h3 class="inline-block font-30">基础数据走势图</h3>
+                    <div class="inline-block pull-right">
+                        <div class="input-group">
+                            <span class="data-sty btn pull-right" id="reservation1">
+                            <span>
+                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;选择日期
+                            </span>
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="one" style="width:100%;;height: 400px;"></div>
+                <div class="tab">
+                    <ul>
+                        <li class="active2">人数
+                            <div class="blue-line"></div>
+                        </li>
+                        <li>频次
+                            <div></div>
+                        </li>
+                        <li>人数
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="box">
+                <div class="">
+                    <h3 class="inline-block font-30">基础数据走势图</h3>
+                    <div class="inline-block pull-right">
+                        <div class="input-group pull-right">
+                            <span class="data-sty btn pull-right" id="reservation2">
+                            <span>
+                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;选择日期
+                            </span>
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="two" style="width:100%;height: 400px;"></div>
+                <div class="tab">
+                    <ul>
+                        <li>人数
+                            <div class="blue-line"></div>
+                        </li>
+                        <li>频次
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------------------------数据明细-->
+    <div class="box mar-top-30 mar-bot-40">
+        <div class="">
+            <h3 class="inline-block font-30">数据明细</h3>
+            <div class="tab tab2 inline-block">
+                <ul>
+                    <li>首页</li>
+                    <li>分类1</li>
+                    <li>分类2</li>
+                    <li>分类3</li>
+                </ul>
+            </div>
+            <div class="inline-block pull-right">
+                <div class="input-group pull-right">
+                            <span class="data-sty btn pull-right" id="reservation3">
+                            <span>
+                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;选择日期
+                            </span>
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table id="example1" class="table table-bg text-center" role="grid"
+                       aria-describedby="example2_info">
+                    <tbody>
+                    <tr role="row" class="odd">
+                        <td class="sorting_1">日期</td>
+                        <td>直播tab活跃人数</td>
+                        <td>观众人数</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="sorting_1">Gecko</td>
+                        <td>1.8</td>
+                        <td>A</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="sorting_1">总计</td>
+                        <td>1</td>
+                        <td>A</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="sorting_1">总计</td>
+                        <td>1</td>
+                        <td>A</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="sorting_1">总计</td>
+                        <td>1</td>
+                        <td>A</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="text-center">
+    <strong>Aloha &copy; 2018-2020 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+</footer>
+<script src="../assets/lib/require/require.js"></script>
+<script src="../assets/js/config.js"></script>
+<script>
+    require(['index'])
+</script>
+</body>
+</html>
