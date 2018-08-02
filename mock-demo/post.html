@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post</title>
+</head>
+<body>
+<form action="">
+    <div>用户姓名<input type="text" name="account"></div>
+    <div>用户ID<input type="text" name="pwd"></div>
+    <input id="btn" type="button" value="提交">
+</form>
+<div id="demo"></div>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/mockjs/dist/mock-min.js"></script>
+<script src="node_modules/art-template/lib/template-web.js"></script>
+<script type="text/html" id="demoTpl">
+    {{each $data.user}}
+    <p>用户姓名：{{ $value.name }}</p>
+    <p>用户ID：{{ $value.id }}</p>
+    {{/each}}
+</script>
+<script>
+    Mock.mock('http://test.com', function (data) {
+        return Mock.mock({
+            status: 200
+        });
+    });
+    $(function () {
+        $("#btn").on('click', function () {
+            $.ajax({
+                url: 'http://test.com',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    account: $("#account").val(),
+                    pwd: $("#pwd").val()
+                }
+            }).done(function (data) {
+                console.log('----', data,data.status);
+                if (data.status == 200) {
+                    alert("success")
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>
