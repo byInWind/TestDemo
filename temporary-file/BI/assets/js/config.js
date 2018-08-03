@@ -9,7 +9,8 @@ require.config({
         template: 'lib/template/template-web',
         //    my-js
         index: 'js/index',
-        income: 'js/income'
+        income: 'js/income',
+        mock: 'lib/mock/mock-min'
     },
     shim: {
         bootstrap: {

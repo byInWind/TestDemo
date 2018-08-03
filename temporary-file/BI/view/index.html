@@ -28,37 +28,37 @@
         </div>
     </header>
     <!--人数-->
-    <div class="row num">
-        <div class="col-md-4 text-center">
-            <div class="">
-                <div class="">
-                    <p><b class="font-48">1,222,333</b></p>
-                    <p><b>直播Tab活跃人数</b></p>
-                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
-                            class="icon-down"></i></span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 text-center">
-            <div class="">
-                <div class="">
-                    <p><b class="font-48">1,222,333</b></p>
-                    <p><b>直播Tab活跃人数</b></p>
-                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
-                            class="icon-down"></i></span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 text-center">
-            <div class="">
-                <div class="">
-                    <p><b class="font-48">1,222,333</b></p>
-                    <p><b>直播Tab活跃人数</b></p>
-                    <div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i
-                            class="icon-down"></i></span></div>
-                </div>
-            </div>
-        </div>
+    <div id="num" class="row num text-center">
+        <!--<div class="col-md-4">-->
+        <!--<div class="">-->
+        <!--<div class="">-->
+        <!--<p><b class="font-48">1,222,333</b></p>-->
+        <!--<p><b>直播Tab活跃人数</b></p>-->
+        <!--<div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i-->
+        <!--class="icon-down"></i></span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<div class="">-->
+        <!--<div class="">-->
+        <!--<p><b class="font-48">1,222,333</b></p>-->
+        <!--<p><b>直播Tab活跃人数</b></p>-->
+        <!--<div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i-->
+        <!--class="icon-down"></i></span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<div class="">-->
+        <!--<div class="">-->
+        <!--<p><b class="font-48">1,222,333</b></p>-->
+        <!--<p><b>直播Tab活跃人数</b></p>-->
+        <!--<div><span class="mar-rig-10">昨日环比&nbsp;xxx <i class="icon-up"></i></span><span>昨日环比&nbsp;xxx <i-->
+        <!--class="icon-down"></i></span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
         <!-- ./col -->
     </div>
     <!-------------------------------------------------------指标走势分布图-->
@@ -187,6 +187,21 @@
     <strong>Aloha &copy; 2018-2020 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
 </footer>
+
+<script type="text/html" id="numTpl">
+    {{each $data}}
+    <div class="col-md-4">
+        <div class="">
+            <div class="">
+                <p><b class="font-48">{{ $value.number1|timestamp}}</b></p>
+                <p><b>{{ $value.name }}</b></p>
+                <div><span class="mar-rig-10">昨日环比&nbsp;{{ $value.number2 }} <i class="icon-up"></i></span><span>上周环比&nbsp;{{ $value.number3 }} <i
+                        class="icon-down"></i></span></div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
 <script src="../assets/lib/require/require.js"></script>
 <script src="../assets/js/config.js"></script>
 <script>

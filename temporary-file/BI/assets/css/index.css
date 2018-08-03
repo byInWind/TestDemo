@@ -40,6 +40,10 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.data-sty:hover {
+    color: white;
+}
+
 .inline-block {
     display: inline-block;
 }
