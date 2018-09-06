@@ -9,8 +9,6 @@
 <div id="app">
     <p>
         <router-link to="/user/1">/user/foo</router-link>
-        <router-link to="/user/2">/user/bar</router-link>
-        <router-link to="/user/2/post/xxx">/user/2/post/xxx</router-link>
     </p>
     <router-view></router-view>
 </div>
@@ -18,16 +16,33 @@
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script>
     const User = {
-        template: `<div>这是第 {{ $route.params.id }} 个</div>`
+        template: `<div>这是第 {{ $route.params.id }} 个
+        <router-link to="/user/1/name">name</router-link>
+        <router-link to="/user/1/boy">boy</router-link>
+         <router-view></router-view>
+</div>`
     }
-    const post_user = {
-        template: `<div>这是第 {{ $route.params }} 个</div>`
+    const name = {
+        template: `<div>这是name</div>`
+    }
+    const boy = {
+        template: `<div>这是boy</div>`
     }
 
     const router = new VueRouter({
         routes: [
-            {path: '/user/:id', component: User},
-            {path: '/user/:id/post/:name_id', component: post_user}
+            {
+                path: '/user/:id', component: User,
+                children: [
+                    {
+                        path: 'name',
+                        component: name
+                    }, {
+                        path: 'boy',
+                        component: boy
+                    }
+                ]
+            }
         ]
     })
 
