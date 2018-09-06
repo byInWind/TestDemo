@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态路由匹配</title>
+</head>
+<body>
+
+<div id="app">
+    <p>
+        <router-link to="/user/1">/user/foo</router-link>
+        <router-link to="/user/2">/user/bar</router-link>
+        <router-link to="/user/2/post/xxx">/user/2/post/xxx</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    const User = {
+        template: `<div>这是第 {{ $route.params.id }} 个</div>`
+    }
+    const post_user = {
+        template: `<div>这是第 {{ $route.params }} 个</div>`
+    }
+
+    const router = new VueRouter({
+        routes: [
+            {path: '/user/:id', component: User},
+            {path: '/user/:id/post/:name_id', component: post_user}
+        ]
+    })
+
+    const app = new Vue({
+        router,
+        el: "#app"
+    })
+</script>
+</body>
+</html>
