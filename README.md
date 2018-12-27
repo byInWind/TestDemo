@@ -11,4 +11,4 @@
 ## 一文阅读
 <a href="https://byinwind.github.io/TestDemo/yiwen/">点击查看效果</a>
 #### 2018.08.02学习mockJs
-#### 更新临时文件
+#### 添加有趣demo一个 <a href="https://byinwind.github.io/TestDemo/interestingDemo/">点击查看效果</a>
