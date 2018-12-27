@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            border: 1px solid;
+            width: 800px;
+            height: 300px;
+            border-radius: 2px;
+            position: relative;
+            margin: 100px auto;
+        }
+
+        .btn1 {
+            position: absolute;
+            bottom: 0;
+            right: 100px;
+            height: 30px;
+            width: 80px;
+        }
+
+        .btn2 {
+            position: absolute;
+            bottom: 0;
+            height: 30px;
+            width: 80px;
+            right: 0px;
+        }
+
+        .x {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            border: 1px solid;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <p>xxx，我喜欢你！你喜欢我吗</p>
+    <div class="x">X</div>
+    <button class="btn1">不喜欢</button>
+    <button class="btn2">喜欢</button>
+</div>
+<script src="../douban/jquery-1.7.2.min.js"></script>
+<script>
+    $(function () {
+        $('.x').click(function () {
+            alert('就算关闭你也是喜欢我的！')
+        });
+        $('.btn1').on('mouseenter', function () {
+            $('.btn1').css('left', Math.random()*800 + 'px');
+            $('.btn1').css('bottom', Math.random()*300 + 'px');
+        });
+        $('.btn2').click(function () {
+            alert('太好了，我也喜欢你！')
+        });
+    })
+</script>
+</body>
+</html>
