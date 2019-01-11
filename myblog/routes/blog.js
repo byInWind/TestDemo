@@ -1,25 +1,26 @@
 const express = require('express')
-const PostModel = require('../models/posts')
+const BlogModel = require('../models/blog')
 const CommentModel = require('../models/comments')
 const router = express.Router()
 
 const checkLogin = require('../middlewares/check').checkLogin
 
-// GET /posts 所有用户或者特定用户的文章页
-//   eg: GET /posts?author=xxx
+// GET /blogs 所有用户或者特定用户的文章页
+//   eg: GET /blogs?author=xxx
 router.get('/', function (req, res, next) {
     const author = req.query.author
 
-    PostModel.getPosts(author)
-        .then(function (posts) {
-            res.render('post', {
-                posts: posts
+    BlogModel.getBlogs(author)
+        .then(function (blogs) {
+
+            res.render('blog', {
+                blog: blogs
             })
         })
         .catch(next)
 });
 
-// POST /posts/create 发表一篇文章
+// POST /blogs/create 发表一篇文章
 router.post('/create', checkLogin, function (req, res, next) {
     const author = req.session.user._id
     const title = req.fields.title
@@ -38,75 +39,76 @@ router.post('/create', checkLogin, function (req, res, next) {
         return res.redirect('back')
     }
 
-    let post = {
+    let blog = {
         author: author,
         title: title,
         content: content
     }
 
-    PostModel.create(post)
+    BlogModel.create(blog)
         .then(function (result) {
-            // 此 post 是插入 mongodb 后的值，包含 _id
-            post = result.ops[0]
+            // 此 blog 是插入 mongodb 后的值，包含 _id
+            blog = result.ops[0]
             req.flash('success', '发表成功')
             // 发表成功后跳转到该文章页
-            res.redirect(`/posts/${post._id}`)
+            res.redirect(`/blogs/${blog._id}`)
         })
         .catch(next)
 })
 
-// GET /posts/create 发表文章页
+// GET /blogs/create 发表文章页
 router.get('/create', checkLogin, function (req, res, next) {
-    res.render('create')
+    res.render('blog_create')
 })
 
-// GET /posts/:postId 单独一篇的文章页
-router.get('/:postId', function (req, res, next) {
-    const postId = req.params.postId
-
+// GET /blogs/:blogId 文章详情页
+router.get('/:blogId', function (req, res, next) {
+    console.log('文章详情页')
+    const blogId = req.params.blogId
     Promise.all([
-        PostModel.getPostById(postId), // 获取文章信息
-        CommentModel.getComments(postId), // 获取该文章所有留言
-        PostModel.incPv(postId)// pv 加 1
+        BlogModel.getBlogById(blogId), // 获取文章信息
+        CommentModel.getComments(blogId), // 获取该文章所有留言
+        BlogModel.incPv(blogId)// pv 加 1
     ])
         .then(function (result) {
-            const post = result[0]
+            const blog = result[0]
             const comments = result[1]
-            if (!post) {
+            if (!blog) {
                 throw new Error('该文章不存在')
             }
 
-            res.render('post', {
-                post: post,
+            res.render('blog_details', {
+                blog: blog,
                 comments: comments
             })
         })
         .catch(next)
 })
 
-// GET /posts/:postId/edit 更新文章页
-router.get('/:postId/edit', checkLogin, function (req, res, next) {
-    const postId = req.params.postId
+// GET /blogs/:blogId/edit 更新文章页
+router.get('/:blogId/edit', checkLogin, function (req, res, next) {
+    console.log('edit')
+    const blogId = req.params.blogId
     const author = req.session.user._id
 
-    PostModel.getRawPostById(postId)
-        .then(function (post) {
-            if (!post) {
+    BlogModel.getRawBlogById(blogId)
+        .then(function (blog) {
+            if (!blog) {
                 throw new Error('该文章不存在')
             }
-            if (author.toString() !== post.author._id.toString()) {
+            if (author.toString() !== blog.author._id.toString()) {
                 throw new Error('权限不足')
             }
-            res.render('article_edit', {
-                post: post
+            res.render('blog_edit', {
+                blog: blog
             })
         })
         .catch(next)
 })
 
-// POST /posts/:postId/edit 更新一篇文章
-router.post('/:postId/edit', checkLogin, function (req, res, next) {
-    const postId = req.params.postId
+// POST /blogs/:blogId/edit 更新一篇文章
+router.post('/:blogId/edit', checkLogin, function (req, res, next) {
+    const blogId = req.params.blogId
     const author = req.session.user._id
     const title = req.fields.title
     const content = req.fields.content
@@ -124,42 +126,42 @@ router.post('/:postId/edit', checkLogin, function (req, res, next) {
         return res.redirect('back')
     }
 
-    PostModel.getRawPostById(postId)
-        .then(function (post) {
-            if (!post) {
+    BlogModel.getRawBlogById(blogId)
+        .then(function (blog) {
+            if (!blog) {
                 throw new Error('文章不存在')
             }
-            if (post.author._id.toString() !== author.toString()) {
+            if (blog.author._id.toString() !== author.toString()) {
                 throw new Error('没有权限')
             }
-            PostModel.updatePostById(postId, {title: title, content: content})
+            BlogModel.updateBlogById(blogId, {title: title, content: content})
                 .then(function () {
                     req.flash('success', '编辑文章成功')
                     // 编辑成功后跳转到上一页
-                    res.redirect(`/posts/${postId}`)
+                    res.redirect(`/blogs/${blogId}`)
                 })
                 .catch(next)
         })
 })
 
-// GET /posts/:postId/remove 删除一篇文章
-router.get('/:postId/remove', checkLogin, function (req, res, next) {
-    const postId = req.params.postId
+// GET /blogs/:blogId/remove 删除一篇文章
+router.get('/:blogId/remove', checkLogin, function (req, res, next) {
+    const blogId = req.params.blogId
     const author = req.session.user._id
 
-    PostModel.getRawPostById(postId)
-        .then(function (post) {
-            if (!post) {
+    BlogModel.getRawBlogById(blogId)
+        .then(function (blog) {
+            if (!blog) {
                 throw new Error('文章不存在')
             }
-            if (post.author._id.toString() !== author.toString()) {
+            if (blog.author._id.toString() !== author.toString()) {
                 throw new Error('没有权限')
             }
-            PostModel.delPostById(postId)
+            BlogModel.delBlogById(blogId)
                 .then(function () {
                     req.flash('success', '删除文章成功')
                     // 删除成功后跳转到主页
-                    res.redirect('/posts')
+                    res.redirect('/blog')
                 })
                 .catch(next)
         })

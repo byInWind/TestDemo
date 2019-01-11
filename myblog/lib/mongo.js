@@ -32,18 +32,18 @@ mongolass.plugin('addCreatedAt', {
 });
 
 //文章模型
-exports.Post = mongolass.model('Post', {
+exports.Blog = mongolass.model('Blog', {
     author: {type: Mongolass.Types.ObjectId, required: true},
     title: {type: 'string', required: true},
     content: {type: 'string', required: true},
     pv: {type: 'number', default: 0}
 });
-exports.Post.index({author: 1, _id: -1}).exec();// 按创建时间降序查看用户的文章列表
+exports.Blog.index({author: 1, _id: -1}).exec();// 按创建时间降序查看用户的文章列表
 
 //留言模型
 exports.Comment = mongolass.model('Comment', {
-    author: { type: Mongolass.Types.ObjectId, required: true },
-    content: { type: 'string', required: true },
-    postId: { type: Mongolass.Types.ObjectId, required: true }
+    author: {type: Mongolass.Types.ObjectId, required: true},
+    content: {type: 'string', required: true},
+    blogId: {type: Mongolass.Types.ObjectId, required: true}
 })
-exports.Comment.index({ postId: 1, _id: 1 }).exec()// 通过文章 id 获取该文章下所有留言，按留言创建时间升序
+exports.Comment.index({blogId: 1, _id: 1}).exec()// 通过文章 id 获取该文章下所有留言，按留言创建时间升序

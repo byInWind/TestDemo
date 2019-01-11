@@ -38,7 +38,7 @@ app.use(require('express-formidable')({
     keepExtensions: true// 保留后缀
 }))
 // 设置模板全局常量
-app.locals.blog = {
+app.locals.my_blog = {
     title: pkg.name,
     description: pkg.description
 }
