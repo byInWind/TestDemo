@@ -9,10 +9,9 @@ const checkLogin = require('../middlewares/check').checkLogin
 //   eg: GET /posts?author=xxx
 router.get('/', function (req, res, next) {
     const author = req.query.author
-
     PostModel.getPosts(author)
         .then(function (posts) {
-            res.render('posts', {
+            res.render('blog', {
                 posts: posts
             })
         })
@@ -20,7 +19,7 @@ router.get('/', function (req, res, next) {
 })
 
 
-// POST /posts/create 发表一篇文章
+// POST /blog/create 发表一篇文章
 router.post('/create', checkLogin, function (req, res, next) {
     const author = req.session.user._id
     const title = req.fields.title
@@ -51,17 +50,17 @@ router.post('/create', checkLogin, function (req, res, next) {
             post = result.ops[0]
             req.flash('success', '发表成功')
             // 发表成功后跳转到该文章页
-            res.redirect(`/posts/${post._id}`)
+            res.redirect(`/blog/${post._id}`)
         })
         .catch(next)
 })
 
-// GET /posts/create 发表文章页
+// GET /blog/create 发表文章页
 router.get('/create', checkLogin, function (req, res, next) {
-    res.render('create')
+    res.render('blog_create')
 })
 
-// GET /posts/:postId 单独一篇的文章页
+// GET /blog/:postId 单独一篇的文章页
 router.get('/:postId', function (req, res, next) {
     const postId = req.params.postId
 
@@ -77,7 +76,7 @@ router.get('/:postId', function (req, res, next) {
                 throw new Error('该文章不存在')
             }
 
-            res.render('post', {
+            res.render('blog_details', {
                 post: post,
                 comments: comments
             })
@@ -98,7 +97,7 @@ router.get('/:postId/edit', checkLogin, function (req, res, next) {
             if (author.toString() !== post.author._id.toString()) {
                 throw new Error('权限不足')
             }
-            res.render('edit', {
+            res.render('blog_edit', {
                 post: post
             })
         })
@@ -137,7 +136,7 @@ router.post('/:postId/edit', checkLogin, function (req, res, next) {
                 .then(function () {
                     req.flash('success', '编辑文章成功')
                     // 编辑成功后跳转到上一页
-                    res.redirect(`/posts/${postId}`)
+                    res.redirect(`/blog/${postId}`)
                 })
                 .catch(next)
         })
@@ -160,7 +159,7 @@ router.get('/:postId/remove', checkLogin, function (req, res, next) {
                 .then(function () {
                     req.flash('success', '删除文章成功')
                     // 删除成功后跳转到主页
-                    res.redirect('/posts')
+                    res.redirect('/blog')
                 })
                 .catch(next)
         })
