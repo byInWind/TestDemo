@@ -7,12 +7,12 @@ const router = express.Router()
 const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
 
-// GET /login 注册页
+// GET /signup 注册页
 router.get('/', checkNotLogin, function (req, res, next) {
-    res.render('login')
+    res.render('signup')
 })
 
-// POST /login 用户注册
+// POST /signup 用户注册
 router.post('/', checkNotLogin, function (req, res, next) {
     const name = req.fields.name
     const gender = req.fields.gender
@@ -45,7 +45,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
         // 注册失败，异步删除上传的头像
         fs.unlink(req.files.avatar.path)
         req.flash('error', e.message)
-        return res.redirect('/login')
+        return res.redirect('/signup')
     }
 
     // 明文密码加密
@@ -70,7 +70,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
             // 写入 flash
             req.flash('success', '注册成功')
             // 跳转到首页
-            res.redirect('/blog')
+            res.redirect('/posts')
         })
         .catch(function (e) {
             // 注册失败，异步删除上传的头像
@@ -78,7 +78,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
             // 用户名被占用则跳回注册页，而不是错误页
             if (e.message.match('duplicate key')) {
                 req.flash('error', '用户名已被占用')
-                return res.redirect('/login')
+                return res.redirect('/signup')
             }
             next(e)
         })

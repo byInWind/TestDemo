@@ -4,10 +4,10 @@ const router = express.Router()
 const checkLogin = require('../middlewares/check').checkLogin
 const CommentModel = require('../models/comments')
 
-// blog /comments 创建一条留言
+// POST /comments 创建一条留言
 router.post('/', checkLogin, function (req, res, next) {
     const author = req.session.user._id
-    const blogId = req.fields.blogId
+    const postId = req.fields.postId
     const content = req.fields.content
 
     // 校验参数
@@ -22,7 +22,7 @@ router.post('/', checkLogin, function (req, res, next) {
 
     const comment = {
         author: author,
-        blogId: blogId,
+        postId: postId,
         content: content
     }
 

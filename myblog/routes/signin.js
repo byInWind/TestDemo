@@ -44,7 +44,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
             delete user.password
             req.session.user = user
             // 跳转到主页
-            res.redirect('/blog')
+            res.redirect('/posts')
         })
         .catch(next)
 })
