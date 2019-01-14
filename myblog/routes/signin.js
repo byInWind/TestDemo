@@ -10,7 +10,7 @@ router.get('/', checkNotLogin, function (req, res, next) {
     res.render('signin')
 })
 
-// POST /signin 用户登录
+// blog /signin 用户登录
 router.post('/', checkNotLogin, function (req, res, next) {
     const name = req.fields.name
     const password = req.fields.password

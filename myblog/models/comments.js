@@ -28,14 +28,14 @@ module.exports = {
     },
 
     // 通过文章 id 删除该文章下所有留言
-    delCommentsByPostId: function delCommentsByPostId (postId) {
-        return Comment.deleteMany({ postId: postId }).exec()
+    delCommentsByBlogId: function delCommentsByBlogId (blogId) {
+        return Comment.deleteMany({ blogId: blogId }).exec()
     },
 
     // 通过文章 id 获取该文章下所有留言，按留言创建时间升序
-    getComments: function getComments (postId) {
+    getComments: function getComments (blogId) {
         return Comment
-            .find({ postId: postId })
+            .find({ blogId: blogId })
             .populate({ path: 'author', model: 'User' })
             .sort({ _id: 1 })
             .addCreatedAt()
@@ -44,7 +44,7 @@ module.exports = {
     },
 
     // 通过文章 id 获取该文章下留言数
-    getCommentsCount: function getCommentsCount (postId) {
-        return Comment.count({ postId: postId }).exec()
+    getCommentsCount: function getCommentsCount (blogId) {
+        return Comment.count({ blogId: blogId }).exec()
     }
 }

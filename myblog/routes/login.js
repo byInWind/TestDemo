@@ -12,7 +12,7 @@ router.get('/', checkNotLogin, function (req, res, next) {
     res.render('login')
 })
 
-// POST /signup 用户注册
+// blog /signup 用户注册
 router.post('/', checkNotLogin, function (req, res, next) {
     const name = req.fields.name
     const gender = req.fields.gender
