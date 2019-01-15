@@ -4,7 +4,7 @@ const router = express.Router()
 
 const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
- 
+
 // GET /signin 登录页
 router.get('/', checkNotLogin, function (req, res, next) {
     res.render('signin')
@@ -12,10 +12,8 @@ router.get('/', checkNotLogin, function (req, res, next) {
 
 // blog /signin 用户登录
 router.post('/', checkNotLogin, function (req, res, next) {
-
     const name = req.fields.name
     const password = req.fields.password
-    console.log('111999999992992929299292929299292',name,password)
 
     // 校验参数
     try {
@@ -45,9 +43,8 @@ router.post('/', checkNotLogin, function (req, res, next) {
             // 用户信息写入 session
             delete user.password
             req.session.user = user
-            // 返回参数
-            res.json({success: 200})
-            // res.redirect('/blog')
+            // 跳转到主页
+            res.redirect('/blog')
         })
         .catch(next)
 })
