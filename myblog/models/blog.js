@@ -57,12 +57,10 @@ module.exports = {
 
     // 按创建时间降序获取所有用户文章或者某个特定用户的所有文章
     getBlogs: function getBlogs(author) {
-        console.log('author1', author)
         const query = {}
         if (author) {
             query.author = author
         }
-        console.log('author2', author)
 
         return Blog
             .find(query)
