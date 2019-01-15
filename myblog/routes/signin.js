@@ -12,8 +12,10 @@ router.get('/', checkNotLogin, function (req, res, next) {
 
 // blog /signin 用户登录
 router.post('/', checkNotLogin, function (req, res, next) {
+
     const name = req.fields.name
     const password = req.fields.password
+    console.log('111999999992992929299292929299292',name,password)
 
     // 校验参数
     try {
@@ -43,8 +45,9 @@ router.post('/', checkNotLogin, function (req, res, next) {
             // 用户信息写入 session
             delete user.password
             req.session.user = user
-            // 跳转到主页
-            res.redirect('/blog')
+            // 返回参数
+            res.json({success: 200})
+            // res.redirect('/blog')
         })
         .catch(next)
 })
