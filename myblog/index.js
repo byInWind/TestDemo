@@ -52,31 +52,31 @@ app.use(function (req, res, next) {
 })
 
 // 正常请求的日志
-app.use(expressWinston.logger({
-    transports: [
-        new (winston.transports.Console)({
-            json: true,
-            colorize: true
-        }),
-        new winston.transports.File({
-            filename: 'logs/success.log'
-        })
-    ]
-}))
+// app.use(expressWinston.logger({
+//     transports: [
+//         new (winston.transports.Console)({
+//             json: true,
+//             colorize: true
+//         }),
+//         new winston.transports.File({
+//             filename: 'logs/success.log'
+//         })
+//     ]
+// }))
 // 路由
 routes(app)
 // 错误请求的日志
-app.use(expressWinston.errorLogger({
-    transports: [
-        new winston.transports.Console({
-            json: true,
-            colorize: true
-        }),
-        new winston.transports.File({
-            filename: 'logs/error.log'
-        })
-    ]
-}))
+// app.use(expressWinston.errorLogger({
+//     transports: [
+//         new winston.transports.Console({
+//             json: true,
+//             colorize: true
+//         }),
+//         new winston.transports.File({
+//             filename: 'logs/error.log'
+//         })
+//     ]
+// }))
 //将错误信息用页面通知展示
 app.use(function (err, req, res, next) {
     console.error(err)
