@@ -7,45 +7,49 @@ const router = express.Router()
 const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
 
-// GET /signup 注册页
+// GET /login 注册页
 router.get('/', checkNotLogin, function (req, res, next) {
     res.render('login')
 })
 
-// blog /signup 用户注册
-router.post('/', checkNotLogin, function (req, res, next) {
+// blog /login 用户注册
+router.post('/post', function (req, res, next) {
+    console.log(33333333333, req.fields)
     const name = req.fields.name
     const gender = req.fields.gender
     const bio = req.fields.bio
-    const avatar = req.files.avatar.path.split(path.sep).pop()
+    var avatar
+    if (req.files.avatar) {
+        console.log('有头像了有头像了有头像了有头像了有头像了有头像了有头像了')
+        avatar = req.files.avatar.path.split(path.sep).pop()
+    } else {
+        console.log('头像是空的头像是空的头像是空的头像是空的头像是空的头像是空的头像是空的')
+        avatar = ''
+    }
     let password = req.fields.password
     const repassword = req.fields.repassword
-
     // 校验参数
     try {
         if (!(name.length >= 1 && name.length <= 10)) {
-            throw new Error('名字请限制在 1-10 个字符')
+            res.json({message: '名字请限制在 1-10 个字符'})
         }
         if (['m', 'f', 'x'].indexOf(gender) === -1) {
-            throw new Error('性别只能是 m、f 或 x')
+            res.json({message: '性别只能是 m、f 或 x'})
         }
         if (!(bio.length >= 1 && bio.length <= 30)) {
-            throw new Error('个人简介请限制在 1-30 个字符')
+            res.json({message: '简介字数不符'})
         }
-        if (!req.files.avatar.name) {
-            throw new Error('缺少头像')
-        }
+
         if (password.length < 6) {
-            throw new Error('密码至少 6 个字符')
+            res.json({message: '密码至少 6 个字符'})
         }
         if (password !== repassword) {
-            throw new Error('两次输入密码不一致')
+            res.json({message: '两次输入密码不一致'})
         }
     } catch (e) {
         // 注册失败，异步删除上传的头像
         fs.unlink(req.files.avatar.path)
-        req.flash('error', e.message)
-        return res.redirect('/login')
+        res.json({message: e.message})
     }
 
     // 明文密码加密
@@ -68,17 +72,15 @@ router.post('/', checkNotLogin, function (req, res, next) {
             delete user.password
             req.session.user = user
             // 写入 flash
-            req.flash('success', '注册成功')
-            // 跳转到首页
-            res.redirect('/blog')
+            res.status(200).json({message: '注册成功'})
+
         })
         .catch(function (e) {
             // 注册失败，异步删除上传的头像
             fs.unlink(req.files.avatar.path)
             // 用户名被占用则跳回注册页，而不是错误页
             if (e.message.match('duplicate key')) {
-                req.flash('error', '用户名已被占用')
-                return res.redirect('/login')
+                res.json({message: '用户名已被占用'})
             }
             next(e)
         })

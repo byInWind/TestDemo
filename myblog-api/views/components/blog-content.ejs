@@ -5,7 +5,11 @@
                href="/blog?author=<%= blog.author._id %>"
                data-title="<%= blog.author.name %> | <%= ({m: '男', f: '女', x: '保密'})[blog.author.gender] %>"
                data-content="<%= blog.author.bio %>">
-                <img class="avatar" src="/img/<%= blog.author.avatar %>">
+                <% if(blog.author.avatar) { %>
+                    <img class="avatar" src="/img/<%= blog.author.avatar %>">
+                <% } else{ %>
+                    <img class="avatar" src="/img/1.jpg">
+                <% } %>
             </a>
         </div>
 
