@@ -14,16 +14,13 @@ router.get('/', checkNotLogin, function (req, res, next) {
 
 // blog /login 用户注册
 router.post('/post', function (req, res, next) {
-    console.log(33333333333, req.fields)
     const name = req.fields.name
     const gender = req.fields.gender
     const bio = req.fields.bio
     var avatar
     if (req.files.avatar) {
-        console.log('有头像了有头像了有头像了有头像了有头像了有头像了有头像了')
         avatar = req.files.avatar.path.split(path.sep).pop()
     } else {
-        console.log('头像是空的头像是空的头像是空的头像是空的头像是空的头像是空的头像是空的')
         avatar = ''
     }
     let password = req.fields.password

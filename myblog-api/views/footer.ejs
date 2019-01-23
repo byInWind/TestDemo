@@ -9,6 +9,16 @@
             position: 'bottom right',
             lastResort: 'bottom right'
         });
+        //登出
+        $("#logout").click(function () {
+            $.ajax({
+                url: 'http://localhost:3000/logout',
+                type: 'get',
+                success: function (r) {
+                    location.href = '/blog'
+                }
+            })
+        })
     })
 </script>
 </body>

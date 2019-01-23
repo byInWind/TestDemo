@@ -50,7 +50,7 @@ router.post('/create', checkLogin, function (req, res, next) {
             blog = result.ops[0]
             // req.flash('success', '发表成功')
             // 发表成功后跳转到该文章页
-            res.status(200).json({status: 200, message: '发表成功'})
+            res.status(200).json({status: 200, message: '发表成功', blogId: blog._id})
             // res.redirect(`/blog/${blog._id}`)
         })
         .catch(next)
@@ -151,17 +151,20 @@ router.get('/:blogId/remove', checkLogin, function (req, res, next) {
     BlogModel.getRawBlogById(blogId)
         .then(function (blog) {
             if (!blog) {
+                res.json({message: '文章不存在'})
                 throw new Error('文章不存在')
             }
             if (blog.author._id.toString() !== author.toString()) {
+                res.json({message: '没有权限'})
                 throw new Error('没有权限')
             }
 
             BlogModel.delBlogById(blogId, author)
                 .then(function () {
-                    req.flash('success', '删除文章成功')
+                    res.status(200).json({message: '删除文章成功'})
+                    // req.flash('success', '删除文章成功')
                     // 删除成功后跳转到主页
-                    res.redirect('/blog')
+                    // res.redirect('/blog')
                 })
                 .catch(next)
         })

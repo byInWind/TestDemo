@@ -7,9 +7,10 @@ const checkLogin = require('../middlewares/check').checkLogin
 router.get('/', checkLogin, function (req, res, next) {
     // 清空 session 中用户信息
     req.session.user = null
-    req.flash('success', '登出成功')
+    // req.flash('success', '登出成功')
+    res.status(200).json({message: '登出成功'})
     // 登出成功后跳转到主页
-    res.redirect('signin')
+    // res.redirect('signin')
 })
 
 module.exports = router
