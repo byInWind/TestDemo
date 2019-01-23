@@ -40,7 +40,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
             delete user.password
             req.session.user = user
             res.status(200).json({status: 200, message: '登录成功'})
-            res.redirect('blog')
+            // res.redirect('blog')
         })
         .catch(next)
 })

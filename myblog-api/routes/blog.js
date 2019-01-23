@@ -48,9 +48,10 @@ router.post('/create', checkLogin, function (req, res, next) {
         .then(function (result) {
             // 此 blog 是插入 mongodb 后的值，包含 _id
             blog = result.ops[0]
-            req.flash('success', '发表成功')
+            // req.flash('success', '发表成功')
             // 发表成功后跳转到该文章页
-            res.redirect(`/blog/${blog._id}`)
+            res.status(200).json({status: 200, message: '发表成功'})
+            // res.redirect(`/blog/${blog._id}`)
         })
         .catch(next)
 })

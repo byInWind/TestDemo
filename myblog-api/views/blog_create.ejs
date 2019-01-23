@@ -14,13 +14,13 @@
         <form class="ui form segment">
             <div class="field required">
                 <label>标题</label>
-                <input type="text" name="title">
+                <input id="title" type="text" name="title">
             </div>
             <div class="field required">
                 <label>内容</label>
-                <textarea name="content" rows="15"></textarea>
+                <textarea id="content" name="content" rows="15"></textarea>
             </div>
-            <input type="submit" class="ui button" value="发布">
+            <input id="submit" type="button" class="ui button" value="发布">
         </form>
     </div>
 </div>
@@ -29,13 +29,13 @@
 <script>
     $(function () {
         $("#submit").on('click', function () {
-            var name = $('#name').val()
-            var password = $('#password').val()
-            if (name && password) {
+            var title = $('#title').val()
+            var content = $('#content').val()
+            if (title && content) {
                 $.ajax({
                     url: 'http://localhost:3000/blog/create',
                     type: 'post',
-                    data: {name: name, password: password},
+                    data: {title: title, content: content},
                     success: function (r) {
                         console.log(3, r)
                         if (r.status == 200) {
@@ -47,7 +47,7 @@
                     }
                 })
             } else {
-                alert('用户名或密码不能为空')
+                alert('标题或内容不能为空')
             }
         })
     })

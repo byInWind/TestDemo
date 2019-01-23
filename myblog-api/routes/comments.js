@@ -17,7 +17,7 @@ router.post('/', checkLogin, function (req, res, next) {
         }
     } catch (e) {
         req.flash('error', e.message)
-        return res.redirect('back')
+        return res.json({xx:'xx'})
     }
 
     const comment = {
@@ -30,6 +30,7 @@ router.post('/', checkLogin, function (req, res, next) {
         .then(function () {
             req.flash('success', '留言成功')
             // 留言成功后跳转到上一页
+
             res.redirect('back')
         })
         .catch(next)
