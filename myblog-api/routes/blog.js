@@ -109,7 +109,7 @@ router.get('/:blogId/edit', checkLogin, function (req, res, next) {
 router.post('/:blogId/edit', checkLogin, function (req, res, next) {
     console.log(req.params,req.fields)
     const blogId = req.params.blogId
-    const author = req.fields.user._id
+    const author = req.session.user._id
     const title = req.fields.title
     const content = req.fields.content
     // 校验参数

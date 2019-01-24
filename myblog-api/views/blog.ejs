@@ -8,11 +8,12 @@
         <h1>您还没有发表过blog</h1>
         <a href="/blog/create">快去发表您的第一篇博客吧</a>
     </section>
-<% } %> 
+<% } %>
 
 <%- include('footer') %>
 <script>
     $(function () {
+        //删除文章
         $(".del").on('click', function () {
             var blogId = $(this).attr('data-id')
             $.ajax({

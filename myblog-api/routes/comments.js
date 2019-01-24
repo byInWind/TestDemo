@@ -6,6 +6,7 @@ const CommentModel = require('../models/comments')
 
 // blog /comments 创建一条留言
 router.post('/', checkLogin, function (req, res, next) {
+    console.log(1111111)
     const author = req.session.user._id
     const blogId = req.fields.blogId
     const content = req.fields.content
@@ -13,11 +14,12 @@ router.post('/', checkLogin, function (req, res, next) {
     // 校验参数
     try {
         if (!content.length) {
+            res.json({message: '请填写留言内容'});
             throw new Error('请填写留言内容')
         }
     } catch (e) {
         req.flash('error', e.message)
-        return res.json({xx:'xx'})
+        return res.json({error: e.message});
     }
 
     const comment = {
@@ -28,10 +30,11 @@ router.post('/', checkLogin, function (req, res, next) {
 
     CommentModel.create(comment)
         .then(function () {
-            req.flash('success', '留言成功')
+            req.flash('success', '留言成功');
+            res.json({message: '留言成功'})
             // 留言成功后跳转到上一页
 
-            res.redirect('back')
+            //res.redirect('back')
         })
         .catch(next)
 })

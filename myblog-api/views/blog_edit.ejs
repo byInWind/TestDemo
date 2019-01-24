@@ -15,19 +15,41 @@
     </div>
 
     <div class="eight wide column">
-        <form class="ui form segment" method="post" action="/blog/<%= blog._id %>/edit">
+        <form class="ui form segment">
             <div class="field required">
                 <label>标题</label>
-                <input type="text" name="title" value="<%= blog.title %>">
+                <input id="title" type="text" name="title" value="<%= blog.title %>">
             </div>
             <div class="field required">
                 <label>内容</label>
-                <textarea name="content" rows="15"><%= blog.content %></textarea>
+                <textarea id="content" name="content" rows="15"><%= blog.content %></textarea>
             </div>
-            <input type="submit" class="ui button" value="发布">
+            <input id="submit" type="text" class="ui button" value="发布">
         </form>
     </div>
 </div>
 
 <%- include('footer') %>
-z
+<script>
+    $(function () {
+        $("#submit").on('click', function () {
+            var title = $('#title').val()
+            var content = $('#content').val()
+            if (title && content) {
+                $.ajax({
+                    url: location.href,
+                    type: 'post',
+                    data: {title: title, content: content},
+                    success: function (r) {
+                        console.log(3, r)
+                        if (r.status == 200) {
+                            location.reload()
+                        }
+                    }
+                })
+            } else {
+                alert('标题或内容不能为空')
+            }
+        })
+    })
+</script>

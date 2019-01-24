@@ -8,7 +8,11 @@
                 <% comments.forEach(function (comment) { %>
                     <div class="comment">
             <span class="avatar">
-              <img src="/img/<%= comment.author.avatar %>">
+                <% if(comment.author.avatar) { %>
+                    <img class="avatar" src="/img/<%= comment.author.avatar %>">
+                <% } else{ %>
+                    <img class="avatar" src="/img/avatar.png">
+                <% } %>
             </span>
                         <div class="content">
                             <a class="author"
@@ -28,12 +32,12 @@
                 <% }) %>
 
                 <% if (user) { %>
-                    <form class="ui reply form" method="post" action="/comments">
-                        <input name="blogId" value="<%= blog._id %>" hidden>
+                    <form class="ui reply form">
+                        <input id="blogId" name="blogId" value="<%= blog._id %>" hidden>
                         <div class="field">
-                            <textarea name="content"></textarea>
+                            <textarea id="content" name="content"></textarea>
                         </div>
-                        <input type="submit" class="ui icon button" value="留言"/>
+                        <input id="submit" type="button" class="ui icon button" value="留言"/>
                     </form>
                 <% } %>
 
@@ -41,3 +45,26 @@
         </div>
     </div>
 </div>
+<script>
+    ////// xhr 404
+    window.onload = function () {
+        //发表评论
+        $("#submit").on('click', function () {
+            var blogId = $('#blogId').val()
+            var content = $('#content').val()
+            if (blogId && content) {
+                $.ajax({
+                    url: '/comments',
+                    type: 'post',
+                    data: {blogId: blogId, content: content},
+                    success: function (r) {
+                        console.log(3, r)
+                        location.reload()
+                    }
+                })
+            } else {
+                alert('内容不能为空')
+            }
+        })
+    }
+</script>
