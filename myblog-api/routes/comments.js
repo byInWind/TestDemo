@@ -47,16 +47,19 @@ router.get('/:commentId/remove', checkLogin, function (req, res, next) {
     CommentModel.getCommentById(commentId)
         .then(function (comment) {
             if (!comment) {
+                res.json({message: '留言不存在'})
                 throw new Error('留言不存在')
             }
             if (comment.author.toString() !== author.toString()) {
+                res.json({message: '没有权限删除留言'})
                 throw new Error('没有权限删除留言')
             }
             CommentModel.delCommentById(commentId)
                 .then(function () {
-                    req.flash('success', '删除留言成功')
+                    req.flash('success', '删除留言成功');
+                    res.json({message: '删除留言成功'})
                     // 删除成功后跳转到上一页
-                    res.redirect('back')
+                    // res.redirect('back')
                 })
                 .catch(next)
         })

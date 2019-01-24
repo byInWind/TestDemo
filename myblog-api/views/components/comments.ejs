@@ -24,7 +24,7 @@
 
                             <% if (user && comment.author._id && user._id.toString() === comment.author._id.toString()) { %>
                                 <div class="actions">
-                                    <a class="reply" href="/comments/<%= comment._id %>/remove">删除</a>
+                                    <span class="reply del_comment" data-comment-id="<%= comment._id %>">删除</span>
                                 </div>
                             <% } %>
                         </div>
@@ -46,7 +46,6 @@
     </div>
 </div>
 <script>
-    ////// xhr 404
     window.onload = function () {
         //发表评论
         $("#submit").on('click', function () {
@@ -65,6 +64,19 @@
             } else {
                 alert('内容不能为空')
             }
-        })
+        });
+        //删除评论
+        $(".del_comment").on('click', function () {
+            var commentId = $(this).attr('data-comment-id');
+            $.ajax({
+                url: '/comments/' + commentId + '/remove',
+                type: 'get',
+                data: {commentId: commentId},
+                success: function (r) {
+                    console.log(3, r)
+                    location.reload()
+                }
+            })
+        });
     }
 </script>
