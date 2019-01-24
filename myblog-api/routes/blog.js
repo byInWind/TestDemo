@@ -107,17 +107,19 @@ router.get('/:blogId/edit', checkLogin, function (req, res, next) {
 
 // Blog /blog/:blogId/edit 更新一篇文章
 router.post('/:blogId/edit', checkLogin, function (req, res, next) {
+    console.log(req.params,req.fields)
     const blogId = req.params.blogId
-    const author = req.session.user._id
+    const author = req.fields.user._id
     const title = req.fields.title
     const content = req.fields.content
-
     // 校验参数
     try {
         if (!title.length) {
+            req.json({message: '请填写内容'})
             throw new Error('请填写标题')
         }
         if (!content.length) {
+            req.json({message: '请填写内容'})
             throw new Error('请填写内容')
         }
     } catch (e) {
@@ -137,7 +139,8 @@ router.post('/:blogId/edit', checkLogin, function (req, res, next) {
                 .then(function () {
                     req.flash('success', '编辑文章成功')
                     // 编辑成功后跳转到上一页
-                    res.redirect(`/blog/${blogId}`)
+                    res.status(200).json({status: 200, message: '编辑文章成功'})
+                    // res.redirect(`/blog/${blogId}`)
                 })
                 .catch(next)
         })
