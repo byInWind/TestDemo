@@ -6,7 +6,6 @@ const CommentModel = require('../models/comments')
 
 // blog /comments 创建一条留言
 router.post('/', checkLogin, function (req, res, next) {
-    console.log(1111111)
     const author = req.session.user._id
     const blogId = req.fields.blogId
     const content = req.fields.content
